@@ -1,0 +1,16 @@
+<!--<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >-->
+<!--<suite name="IshaHomes Suite" verbose="1">-->
+
+<!--    <test name="Completed Projects + ContactUs Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.TC_CP_01_VerifyCompletedProjectsPageLoads_Test"/>-->
+<!--            <class name="tests.TC_CP_02_VerifyCompletedProjectsListNotEmpty_Test"/>-->
+<!--            <class name="tests.TC_CP_03_VerifyProjectNamesAreDisplayed_Test"/>-->
+<!--            <class name="tests.TC_CP_04_VerifyEnquireNowNavigatesToContactUs_Test"/>-->
+<!--            <class name="tests.TC_CU_01_VerifyContactInfoIsDisplayed_Test"/>-->
+<!--            <class name="tests.TC_CU_02_VerifyEmailIsPresentAndValid_Test"/>-->
+<!--            <class name="tests.TC_GEN_01_VerifyScreenshotCaptured_Test"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--</suite>-->
