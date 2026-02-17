@@ -1,7 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="UI Suite">
-    <parameter name="baseUrl" value="${BASE_URL}"/>
-    <test name="Smoke">
+    <test name="tripAdvicerAutomation">
         <classes>
             <class name="testcases.TC_01_GetURL"/>
         </classes>

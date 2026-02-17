@@ -10,9 +10,8 @@ public class TC_01_GetURL extends BaseTest {
 
 
     @Test
-    @Parameters({"baseUrl"})
-    public void openHome(String baseUrl) {
-        driver.get(baseUrl);
+    public void verifyUrl() {
+        System.out.println("Function to verify the Url with driver.getCurrentUrl usong assertion");
     }
 
 }

@@ -10,14 +10,12 @@ public class BaseTest {
     protected WebDriver driver;
 
     @BeforeMethod
-    @Parameters({"baseUrl"})
-
-    public void setUp(String baseUrl) {
+    public void setUp() {
 
         String browserFromConfig = ConfigReader.get("browser", "chrome");
 
         boolean headless = ConfigReader.getBoolean("headless", false);
-//        String baseUrl = ConfigReader.get("baseUrl");
+        String baseUrl = ConfigReader.get("baseUrl");
 
         driver = DriverFactory.getDriver(browserFromConfig, headless);
         driver.manage().window().maximize();
