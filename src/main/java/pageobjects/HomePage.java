@@ -15,6 +15,10 @@ public class HomePage {
     private final WebDriver driver;
     private final WaitUtils wait;
 
+    public HomePage(WebDriver driver){
+        this.driver = driver;
+        this.wait = new WaitUtils(driver, 20);
+    }
     public By surgeriesTab = By.xpath("//a[@title='surgery']");
     public By navCorporateTab = By.xpath("//span[@event='Nav Provider Marketing:Interacted:Plus Corporate']");
     public By healthWellnessTab = By.xpath("//a[@event='Nav Provider Marketing:Interacted:Plus Corporate']");
@@ -25,14 +29,7 @@ public class HomePage {
 
     public By hospitalName = By.xpath("//h2[@class='line-1']");
 
-    public void NavigateToSurgeriesPage(){
 
-
-    public void NavigateToCorporateTab(){
-
-        WebElement corporateClick = driver.findElement(navCorporateTab);
-        corporateClick.click();
-    }
 
     public void navigateToHealthWellnessPage(){
         WebElement healthWellnessClick = driver.findElement(healthWellnessTab);
@@ -78,8 +75,5 @@ public class HomePage {
         }
     }
 
-    public HomePage(WebDriver driver){
-        this.driver = driver;
-        this.wait = new WaitUtils(driver, 20);
-    }
+
 }
