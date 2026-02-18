@@ -5,6 +5,8 @@ import org.testng.annotations.*;
 import utilities.ConfigReader;
 import utilities.DriverFactory;
 
+import java.time.Duration;
+
 public class BaseTest {
 
     protected WebDriver driver;
