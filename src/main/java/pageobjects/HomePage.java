@@ -27,9 +27,13 @@ public class HomePage {
 
     public void NavigateToSurgeriesPage(){
 
-    }
 
+<<<<<<< feature/Paridhi/DiagnosticPageTest
     public void navigateToCorporateTab(){
+=======
+    public void NavigateToCorporateTab(){
+
+>>>>>>> dev
         WebElement corporateClick = driver.findElement(navCorporateTab);
         corporateClick.click();
     }

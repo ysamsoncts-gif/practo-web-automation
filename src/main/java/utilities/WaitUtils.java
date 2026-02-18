@@ -42,5 +42,19 @@ public class WaitUtils {
                 return false;
             }
         }
+    public boolean invisible(By locator) {
+        try {
+            return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void scrollIntoView(WebElement element) {
+        try {
+            ((org.openqa.selenium.JavascriptExecutor) driver)
+                    .executeScript("arguments[0].scrollIntoView({block:'center'});", element);
+        } catch (Exception ignored) {}
+    }
 
 }
