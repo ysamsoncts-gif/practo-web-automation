@@ -27,9 +27,9 @@ public class HomePage {
 
     public void NavigateToSurgeriesPage(){
 
-    }
 
-    public void navigateToCorporateTab(){
+    public void NavigateToCorporateTab(){
+
         WebElement corporateClick = driver.findElement(navCorporateTab);
         corporateClick.click();
     }
