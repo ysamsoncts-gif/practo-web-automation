@@ -2,7 +2,8 @@
 <suite name="UI Suite">
     <test name="PractoWebPageAutomation">
         <classes>
-
+            <class name="testcases.TC_01_VerifyHomePageTitle"/>
+            <class name="testcases.TC_02_GetHospitalListA"/>
         </classes>
     </test>
 </suite>
