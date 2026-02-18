@@ -14,6 +14,8 @@ public class TC_01_GetURL extends BaseTest {
 
     @Test
     public void verifyClick() {
+        HomePage h = new HomePage(driver);
+        h.NavigateToDiagnosticPage();
     }
 
 

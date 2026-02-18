@@ -2,7 +2,9 @@
 <suite name="UI Suite">
     <test name="tripAdvicerAutomation">
         <classes>
-            <class name="testcases.TC_01_GetURL"/>
+<!--            // <class name="testcases.TC_01_GetURL"/>-->
+            <class name="testcases.TC_07_VerifyPage"/>
+            <class name="testcases.TC_08_VerifyTopCitiesPrintedAndStored"/>
         </classes>
     </test>
 </suite>
