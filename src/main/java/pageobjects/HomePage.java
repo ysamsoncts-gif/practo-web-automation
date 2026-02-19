@@ -15,34 +15,9 @@ public class HomePage {
     private final WebDriver driver;
     private final WaitUtils wait;
 
-    public By surgeriesTab = By.xpath("//a[@title='surgery']");
-    public By navCorporateTab = By.xpath("//span[@event='Nav Provider Marketing:Interacted:Plus Corporate']");
-    public By healthWellnessTab = By.xpath("//a[@event='Nav Provider Marketing:Interacted:Plus Corporate']");
-    public By bookDiagnosticTab = By.xpath("//span[text()='Book Diagnostic Tests']");
-
     public By locationSearchBar = By.xpath("//input[@placeholder='Search location']");
     public By searchHospital = By.xpath("//input[@placeholder='Search doctors, clinics, hospitals, etc.']");
-
     public By hospitalName = By.xpath("//h2[@class='line-1']");
-
-    public void NavigateToSurgeriesPage(){
-
-
-    public void NavigateToCorporateTab(){
-
-        WebElement corporateClick = driver.findElement(navCorporateTab);
-        corporateClick.click();
-    }
-
-    public void navigateToHealthWellnessPage(){
-        WebElement healthWellnessClick = driver.findElement(healthWellnessTab);
-        healthWellnessClick.click();
-    }
-
-    public void navigateToDiagnosticPage(){
-        WebElement diagnosticTestClick = driver.findElement(bookDiagnosticTab);
-        diagnosticTestClick.click();
-    }
 
     public String getPageTitle(){
         return driver.getTitle();
