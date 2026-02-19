@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.CorporatePage;
 
-public class TC_14_InvalidForm extends BaseTest {
+public class TC_14_DemoFormInvalidData extends BaseTest {
 
     @Test
     public void fillingInvalidData()

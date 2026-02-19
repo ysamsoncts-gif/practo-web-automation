@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.CorporatePage;
 
-public class TC_15_ValidFormData extends BaseTest {
+public class TC_15_DemoFromValidData extends BaseTest {
 
     @Test
     public void filingValidData()

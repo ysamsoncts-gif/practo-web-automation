@@ -3,8 +3,8 @@
     <test name="tripAdvicerAutomation">
         <classes>
             <class name="testcases.TC_13_NavigateToWellnessPage"/>
-            <class name="testcases.TC_14_InvalidForm"/>
-            <class name="testcases.TC_15_ValidFormData"/>
+            <class name="testcases.TC_14_DemoFormInvalidData"/>
+            <class name="testcases.TC_15_DemoFromValidData"/>
 
         </classes>
     </test>
