@@ -3,6 +3,9 @@
     <test name="tripAdvicerAutomation">
         <classes>
             <class name="testcases.TC_19_NavigateToSurgeriesPage"/>
+            <class name="testcases.TC_20_AppointmentFormFieldsValidation"/>
+            <class name="testcases.TC_21_AppointmentFormErrorMsgValidation"/>
+
         </classes>
     </test>
 </suite>
