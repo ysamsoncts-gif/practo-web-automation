@@ -17,10 +17,24 @@ public class CorporatePage {
    public By emailId = By.id("officialEmailId");
    public By orgSize = By.id("organizationSize");
    public  By interestedIn = By.id("interestedIn");
+    public By navCorporateTab = By.xpath("//span[@event='Nav Provider Marketing:Interacted:Plus Corporate']");
+    public By healthWellnessTab = By.xpath("//a[@event='Nav Provider Marketing:Interacted:Plus Corporate']");
 
     public CorporatePage(WebDriver driver) {
         this.driver = driver;
     }
+
+    public void navigateToCorporateTab(){
+        WebElement corporateClick = driver.findElement(navCorporateTab);
+        corporateClick.click();
+    }
+
+    public void navigateToHealthWellnessPage(){
+        WebElement healthWellnessClick = driver.findElement(healthWellnessTab);
+        healthWellnessClick.click();
+    }
+
+
 
 
 
