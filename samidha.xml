@@ -2,8 +2,7 @@
 <suite name="UI Suite">
     <test name="tripAdvicerAutomation">
         <classes>
-            <class name="testcases.TC_01_GetURL"/>
-            <class name="testcases.TC_13_navToWellnessPage"/>
+            <class name="testcases.TC_13_NavigateToWellnessPage"/>
         </classes>
     </test>
 </suite>
