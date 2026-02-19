@@ -19,6 +19,12 @@ public class HomePage {
     public By searchHospital = By.xpath("//input[@placeholder='Search doctors, clinics, hospitals, etc.']");
     public By hospitalName = By.xpath("//h2[@class='line-1']");
 
+
+    public HomePage(WebDriver driver){
+        this.driver = driver;
+        this.wait = new WaitUtils(driver, 20);
+    }
+
     public String getPageTitle(){
         return driver.getTitle();
     }
