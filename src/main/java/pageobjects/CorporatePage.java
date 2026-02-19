@@ -25,7 +25,6 @@ public class CorporatePage {
     }
 
     public void navigateToCorporateTab(){
-
         WebElement corporateClick = driver.findElement(navCorporateTab);
         corporateClick.click();
     }

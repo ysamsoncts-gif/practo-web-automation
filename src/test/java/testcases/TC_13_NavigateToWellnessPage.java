@@ -10,6 +10,7 @@ public class TC_13_NavigateToWellnessPage extends BaseTest {
 
     @Test
     public void navToHealthAndWellnessPage() {
+
         CorporatePage cp = new CorporatePage(driver);
         cp.navigateToCorporateTab();
         cp.navigateToHealthWellnessPage();
