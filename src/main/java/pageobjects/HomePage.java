@@ -53,8 +53,5 @@ public class HomePage {
         }
     }
 
-    public HomePage(WebDriver driver){
-        this.driver = driver;
-        this.wait = new WaitUtils(driver, 20);
-    }
+
 }
