@@ -18,6 +18,8 @@ public class HomePage {
     public By locationSearchBar = By.xpath("//input[@placeholder='Search location']");
     public By searchHospital = By.xpath("//input[@placeholder='Search doctors, clinics, hospitals, etc.']");
     public By hospitalName = By.xpath("//h2[@class='line-1']");
+    public By hospitalRate = By.xpath("//div[@class='text-1']/child::span[@class='u-bold']");
+    public By hospitalTime = By.xpath("//span[@class='pd-right-2px-text-green']");
 
 
     public HomePage(WebDriver driver){
@@ -30,6 +32,7 @@ public class HomePage {
     }
 
     public void searchLocation(String location){
+        Actions actions = new Actions(driver);
         WebElement sendLocation = driver.findElement(locationSearchBar);
         sendLocation.clear();
         sendLocation.sendKeys(location);
@@ -59,5 +62,18 @@ public class HomePage {
         }
     }
 
+    public void getHospitalRating(){
+        List <WebElement> hospitalRatings = driver.findElements(hospitalRate);
+        for( WebElement rates:hospitalRatings ){
+            System.out.println(rates.getText());
+        }
+    }
+
+    public void getHospitalTiming(){
+        List <WebElement> hospitalTimings = driver.findElements(hospitalTime);
+        for(WebElement times:hospitalTimings){
+            System.out.println(times.getText());
+        }
+    }
 
 }
