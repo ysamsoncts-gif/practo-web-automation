@@ -4,6 +4,7 @@
         <classes>
             <class name="testcases.TC_13_NavigateToWellnessPage"/>
             <class name="testcases.TC_14_InvalidForm"/>
+            <class name="testcases.TC_15_ValidFormData"/>
 
         </classes>
     </test>
