@@ -3,7 +3,7 @@
     <test name="PractoWebPageAutomation">
         <classes>
             <class name="testcases.TC_01_VerifyHomePageTitle"/>
-            <class name="testcases.TC_02_GetHospitalListA"/>
+            <class name="testcases.TC_02_HospitalListForBangaloreLocation"/>
         </classes>
     </test>
 </suite>
