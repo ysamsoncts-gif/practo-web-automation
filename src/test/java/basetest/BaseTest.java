@@ -4,12 +4,19 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import utilities.ConfigReader;
 import utilities.DriverFactory;
+import utilities.ExcelUtils;
 
 import java.time.Duration;
 
 public class BaseTest {
 
     protected WebDriver driver;
+
+    @BeforeSuite
+    public void setupExcelReport() {
+        ExcelUtils.initReport("reports", "Practo_Surgeries");
+    }
+
 
     @BeforeMethod
     public void setUp() {
