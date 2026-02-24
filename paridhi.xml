@@ -4,6 +4,7 @@
         <classes>
             <class name="testcases.TC_07_VerifyDiagnosticPage"/>
             <class name="testcases.TC_08_VerifyTopCitiesPrintedAndStored"/>
+            <class name="testcases.TC_09_VerifySearchbox"/>
         </classes>
     </test>
 </suite>
