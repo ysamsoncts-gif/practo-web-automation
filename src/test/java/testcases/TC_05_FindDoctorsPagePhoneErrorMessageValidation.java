@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.FindDoctorsPage;
 
-public class TC_04_FindDoctorsPagePhoneErrorMessageValidation extends BaseTest {
+public class TC_05_FindDoctorsPagePhoneErrorMessageValidation extends BaseTest {
 
     @Test
     public void verifyErrorMessage() throws InterruptedException {

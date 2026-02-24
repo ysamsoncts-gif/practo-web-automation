@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.FindDoctorsPage;
 
-public class    TC_05_FindDoctorsPageFormValidation extends BaseTest {
+public class TC_04_HomePageFormValidation extends BaseTest {
 
     @Test
     public void verifyForm(){
