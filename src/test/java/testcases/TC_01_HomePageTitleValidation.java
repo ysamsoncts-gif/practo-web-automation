@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
 
-public class TC_01_VerifyHomePageTitle extends BaseTest {
+public class TC_01_HomePageTitleValidation extends BaseTest {
 
     @Test
     public void verifyPageTitle(){
