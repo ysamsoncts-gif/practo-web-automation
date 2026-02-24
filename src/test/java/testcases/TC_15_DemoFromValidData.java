@@ -16,7 +16,6 @@ public class TC_15_DemoFromValidData extends BaseTest {
         cp.navigateToHealthWellnessPage();
 
         cp.validatingData("Samidha","cts","9898989898","cts@gmail.com",3,2);
-        WebElement submitButton = driver.findElement(cp.submit);
-        Assert.assertTrue(submitButton.isEnabled(), "Submit button should be enabled.");
+        Assert.assertTrue(cp.submit.isEnabled(), "Submit button should be enabled.");
     }
 }
