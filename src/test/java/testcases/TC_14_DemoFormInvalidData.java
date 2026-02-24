@@ -11,13 +11,10 @@ public class TC_14_DemoFormInvalidData extends BaseTest {
     @Test
     public void fillingInvalidData()
     {
-
         CorporatePage cp = new CorporatePage(driver);
         cp.navigateToCorporateTab();
         cp.navigateToHealthWellnessPage();
-
         cp.validatingData("Samidha","cts","12345","samidha@123",3,2);
-        WebElement submitButton = driver.findElement(cp.submit);
-        Assert.assertFalse(submitButton.isEnabled(), "Submit button should not be enabled.");
+        Assert.assertFalse(cp.submit.isEnabled(), "Submit button should not be enabled.");
     }
 }

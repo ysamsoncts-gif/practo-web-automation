@@ -5,7 +5,8 @@
             <class name="testcases.TC_13_NavigateToWellnessPage"/>
             <class name="testcases.TC_14_DemoFormInvalidData"/>
             <class name="testcases.TC_15_DemoFromValidData"/>
-
+            <class name ="testcases.TC_16_ListAllServices"/>
+            <class name = "testcases.TC_17_NavigateToMedicinePage"/>
         </classes>
     </test>
 </suite>
