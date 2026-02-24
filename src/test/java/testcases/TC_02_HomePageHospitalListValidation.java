@@ -15,7 +15,7 @@ public class TC_02_HomePageHospitalListValidation extends BaseTest {
         home.selectSearchLocation("Bangalore");
         home.selectSubSearchLocation("Jp Nagar");
 
-        System.out.println("Test Case 02 passed:");
+        System.out.println("Test Case 02 :");
         System.out.println("List of hospitals in JP Nagar:");
         home.storeHospitalName();
 

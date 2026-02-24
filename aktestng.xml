@@ -6,6 +6,7 @@
             <class name="testcases.TC_02_HomePageHospitalListValidation"/>
             <class name="testcases.TC_03_HomePageDoctorListValidation"/>
             <class name="testcases.TC_04_FindDoctorsPagePhoneErrorMessageValidation"/>
+            <class name="testcases.TC_05_FindDoctorsPageFormValidation"/>
         </classes>
     </test>
 </suite>

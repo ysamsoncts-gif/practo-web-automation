@@ -13,6 +13,7 @@ public class TC_01_HomePageTitleValidation extends BaseTest {
         String expectedTitle = "Practo | Video Consultation with Doctors, Book Doctor Appointments, Order Medicine, Diagnostic Tests";
         String actualTitle = home.getPageTitle();
         Assert.assertEquals(actualTitle, expectedTitle, "Test case 01 failed: Page title does not match!");
-        System.out.println("Test case 01 passed: Page title matched!");
+        System.out.println("Test case 01 :");
+        System.out.println("Page title matched!");
     }
 }

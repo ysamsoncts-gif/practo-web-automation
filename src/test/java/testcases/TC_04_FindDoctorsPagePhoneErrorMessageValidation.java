@@ -27,7 +27,7 @@ public class TC_04_FindDoctorsPagePhoneErrorMessageValidation extends BaseTest {
 
         doctors.sendPhoneNumber();
 
-        System.out.println("Test Case 04 passed:");
+        System.out.println("Test Case 04 :");
         System.out.println("Invalid phone number error is displayed (Test case passed) :"+doctors.validateErrorMessage());
         Assert.assertEquals(doctors.validateErrorMessage(),"Number is not valid","Phone number error message not displayed");
     }
