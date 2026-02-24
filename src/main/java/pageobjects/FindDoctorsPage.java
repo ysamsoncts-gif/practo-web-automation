@@ -42,6 +42,25 @@ public class FindDoctorsPage {
     public By continueButtonLocator = By.xpath("//button[text()='Continue']");
     public By errorTextLocator = By.xpath("//div[@class='o-textbox__error']");
 
+    public By loginSignupButtonLocator = By.xpath("//a[text()='Login / Signup']");
+
+    public By mobileNoEmailInputLocator = By.xpath("//input[@id='username']");
+    public By passwordInputLocator = By.xpath("//input[@id='password']");
+
+    public By loginButtonLocator = By.xpath("//button[@id='login']");
+
+    public By userNameErrorLocator = By.xpath("//span[@id='usernameErrorBlock']");
+    public By passwordErrorLocator = By.xpath("//span[@id='passwordErrorBlock']");
+
+    public By signupButtonLocator = By.xpath("//a[@id='registerLink']");
+
+    public By nameBlockErrorLocator = By.xpath("//span[@id='nameErrorBlock']");
+    public By mobileBlockErrorLocator = By.xpath("//span[@id='mobileErrorBlock']");
+    public By passwordBlockErrorLocator = By.xpath("//span[@id='passwordErrorBlock']");
+
+    public By sendOtpButtonLocator = By.xpath("//button[@id='EmailRegister']");
+
+
     public FindDoctorsPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WaitUtils(driver, 20);
@@ -131,5 +150,65 @@ public class FindDoctorsPage {
     public String validateErrorMessage(){
         WebElement errorMessage = wait.visible(errorTextLocator);
         return  errorMessage.getText();
+    }
+
+    public void navigateToLoginPage(){
+        WebElement clickLoginSignupBtn = wait.clickable(loginSignupButtonLocator);
+        clickLoginSignupBtn.click();
+    }
+
+    public void sendDataToInputBox(String phNumber , String password){
+        WebElement sendMobileNumber = wait.visible(mobileNoEmailInputLocator);
+        sendMobileNumber.sendKeys(phNumber);
+        WebElement sendPassword = wait.visible(passwordInputLocator);
+        sendPassword.sendKeys(password);
+    }
+
+    public void clickLoginButton(){
+        WebElement clickLoginBtn = driver.findElement(loginButtonLocator);
+        clickLoginBtn.click();
+    }
+
+    public String validatePhoneEmailErrorMessage(){
+        WebElement errorMessage = wait.visible(userNameErrorLocator);
+        return errorMessage.getText();
+    }
+
+    public void sendDataToInputBox2(String phNumber , String password){
+        WebElement sendMobileNumber = wait.visible(mobileNoEmailInputLocator);
+        sendMobileNumber.clear();
+        sendMobileNumber.sendKeys(phNumber);
+        WebElement sendPassword = wait.visible(passwordInputLocator);
+        sendPassword.sendKeys(password);
+    }
+
+    public String validatePasswordErrorMessage(){
+        WebElement passwordErrorMessage = wait.visible(passwordErrorLocator);
+        return  passwordErrorMessage.getText();
+    }
+
+    public void navigateToSignupPage(){
+        WebElement clickSignupBtn = wait.clickable(signupButtonLocator);
+        clickSignupBtn.click();
+    }
+
+    public void clickSendOtpButton(){
+        WebElement clickSendOtpBtn = wait.clickable(sendOtpButtonLocator);
+        clickSendOtpBtn.click();
+    }
+
+    public String validateNameErrorMessage(){
+        WebElement nameError = wait.visible(nameBlockErrorLocator);
+        return nameError.getText();
+    }
+
+    public String validatePhoneErrorMessage() {
+        WebElement phoneError = driver.findElement(mobileBlockErrorLocator);
+        return phoneError.getText();
+    }
+
+    public String validatePasswordMessage(){
+        WebElement passwordError = driver.findElement(passwordBlockErrorLocator);
+        return passwordError.getText();
     }
 }
