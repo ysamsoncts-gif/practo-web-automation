@@ -9,13 +9,16 @@ public class SurgeriesPage {
 
     private final By desktopSurgeriesLocator = By.xpath("//a[@title=\"surgery\" and @event=\"Nav Drawer:Interacted:Surgery\"]");
     private final By formCityDropdownLocator = By.xpath("//div[@data-qa-id=\"city-selector-container\"] ");
+    private final By formCityOptionsLocator = By.xpath("(//div[@data-qa-id=\"city-name\"]/h1)[4]");
     private final By formAilmentDropdownLocator =By.xpath("//div[@data-qa-id=\"ailment-selector-container\"]");
+    private final By formAilmentOptionsLocator =By.xpath("(//h1[contains(text(),\"ACL Repair\")])[2]");
     private final By formAilmentDropdownErrorMsgLocator =By.xpath("//div[@data-qa-id=\"ailment-selector-container\"]/following::div[1]");
     private final By formNameLocator =By.xpath("//input[@id=\"Name-Gen-Lead-Form\"]");
     private final By formNameErrorMsgLocator =By.xpath("//input[@id=\"Name-Gen-Lead-Form\"]/parent::div/following::div[1]");
     private final By formContactNumberLocator = By.xpath("//input[@id='Phone-Gen-Lead-Form']");
     private final By formContactNumberErrorMsgLocator =By.xpath("//input[@id='Phone-Gen-Lead-Form']/parent::div/following::div[1]");
     private final By formBookAppointmentButtonLocator = By.cssSelector("[data-qa-id='book-appointment-cta']");
+    private final By formOtpSuccessMsgLocator = By.xpath("//p[@id=\"otpSentMsg\"]");
 
 
     public SurgeriesPage(WebDriver driver){
@@ -61,4 +64,25 @@ public class SurgeriesPage {
     public String getAilmentError(){
         return driver.findElement(formAilmentDropdownErrorMsgLocator).getText();
     }
+
+    public void fillTheForm(String Name, String ContactNumber){
+        wait.scrollIntoView(driver.findElement(formBookAppointmentButtonLocator));
+        driver.findElement(formCityDropdownLocator).click();
+        driver.findElement(formCityOptionsLocator).click();
+        driver.findElement(formAilmentDropdownLocator).click();
+        driver.findElement(formAilmentOptionsLocator).click();
+        driver.findElement(formNameLocator).sendKeys(Name);
+        driver.findElement(formContactNumberLocator).sendKeys(ContactNumber);
+    }
+
+    public String submitForm() throws InterruptedException {
+
+        driver.findElement(formBookAppointmentButtonLocator).click();
+        Thread.sleep(5000);
+
+        driver.switchTo().frame(driver.findElement(By.xpath("//iframe")));
+        WebElement msg = driver.findElement(formOtpSuccessMsgLocator);
+        return msg.getText();
+    }
+
 }
