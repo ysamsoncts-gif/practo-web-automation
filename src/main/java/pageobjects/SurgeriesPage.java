@@ -3,8 +3,7 @@ package pageobjects;
 import org.openqa.selenium.*;
 import utilities.ExcelUtils;
 import utilities.WaitUtils;
-
-import java.io.IOException;
+import utilities.ScreenshotUtil;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +11,7 @@ import java.util.List;
 public class SurgeriesPage {
     private final WebDriver driver;
     private final WaitUtils wait;
+    private final ScreenshotUtil Ss;
 
     private final By desktopSurgeriesLocator = By.xpath("//a[@title=\"surgery\" and @event=\"Nav Drawer:Interacted:Surgery\"]");
     private final By formCityDropdownLocator = By.xpath("//div[@data-qa-id=\"city-selector-container\"] ");
@@ -31,13 +31,13 @@ public class SurgeriesPage {
     public SurgeriesPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WaitUtils(driver, 20);
+        this.Ss= new ScreenshotUtil();
     }
     public void navigateToSurgeriesPage() {
         WebElement link = driver.findElement(desktopSurgeriesLocator);
         try {
             link.click();
         } catch (WebDriverException e) {
-            System.out.println("Falling to js ");
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", link);
         }
     }    //Form Methods
@@ -57,6 +57,10 @@ public class SurgeriesPage {
         return isElementDisplayed(formContactNumberLocator);
     }
     public boolean isBookAppointmentButtonVisible() {
+        WebElement bookbtn = driver.findElement(formBookAppointmentButtonLocator);
+        System.out.println(bookbtn.isSelected());
+        System.out.println(bookbtn.isDisplayed());
+        System.out.println(bookbtn.isEnabled());
         return isElementDisplayed(formBookAppointmentButtonLocator);
     }
     public void clickBookButton() {
@@ -75,9 +79,9 @@ public class SurgeriesPage {
         wait.scrollIntoView(driver.findElement(formBookAppointmentButtonLocator));
         driver.findElement(formCityDropdownLocator).click();
         driver.findElement(formCityOptionsLocator).click();
-        driver.findElement(formAilmentDropdownLocator).click();
-        driver.findElement(formAilmentOptionsLocator).click();
-        driver.findElement(formNameLocator).sendKeys(Name);
+        wait.clickable(formAilmentDropdownLocator).click();
+        wait.clickable(formAilmentOptionsLocator).click();
+        wait.visible(formNameLocator).sendKeys(Name);
         driver.findElement(formContactNumberLocator).sendKeys(ContactNumber);
     }
     public String submitForm() {
@@ -85,19 +89,17 @@ public class SurgeriesPage {
         driver.findElement(formBookAppointmentButtonLocator).click();
         driver.switchTo().frame(wait.visible(By.xpath("//iframe")));
         WebElement msg = driver.findElement(formOtpSuccessMsgLocator);
+        Ss.takeScreenshot(driver,"SubmitFormOtpSuccessMsg");
         return msg.getText();
     }
-    //    Popular Surgeries
     public List<WebElement> surgeriesList() {
-
         wait.scrollIntoView(driver.findElement(PopularSurgeriesListLocator));
         List<WebElement> surgerisList = driver.findElements(PopularSurgeriesListLocator);
-        System.out.println(surgerisList.size());
+        Ss.takeScreenshot(driver,"SurgeriesList");
         return surgerisList;
     }
     public List<String> extractSurgeriesList() {
         List<WebElement> list = driver.findElements(PopularSurgeriesListLocator);
-
         List<String> rows = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             String name = list.get(i).getText().trim();
@@ -112,8 +114,8 @@ public class SurgeriesPage {
         ExcelUtils.writeList("Surgeries", "Popular Surgeries offered", rows);
     }
     public List<WebElement> ourDepartmentsList() {
-
         wait.scrollIntoView(driver.findElement(OurDepartmentLocator));
+        Ss.takeScreenshot(driver,"DepartmentList");
         return driver.findElements(OurDepartmentLocator);
     }
     public List<List<String>> extractDepartmentsList() {
@@ -133,8 +135,4 @@ public class SurgeriesPage {
         List<String> headers = Arrays.asList("Department Name", "Ailment Count");
         ExcelUtils.writeTable("Our Departments", headers, rows);
     }
-
-
-
-
 }
