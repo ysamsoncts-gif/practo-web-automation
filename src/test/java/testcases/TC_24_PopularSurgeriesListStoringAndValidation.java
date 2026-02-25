@@ -4,6 +4,7 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.SurgeriesPage;
+import utilities.Log;
 
 public class TC_24_PopularSurgeriesListStoringAndValidation extends BaseTest {
 
@@ -11,9 +12,11 @@ public class TC_24_PopularSurgeriesListStoringAndValidation extends BaseTest {
     public void surgeriesListValidation() throws Exception{
         SurgeriesPage sp = new SurgeriesPage(driver);
         sp.navigateToSurgeriesPage();
-        sp.saveSurgeriesListToExcelFromList();
-        Assert.assertTrue(sp.surgeriesList().size()>1,"No surgeries found at pupular surgeries box in care page");
+        Log.info("Starting test case: surgeriesListValidation");
 
+        sp.saveSurgeriesListToExcelFromList();
+        System.out.println(sp.surgeriesList().size());
+        Assert.assertTrue(sp.surgeriesList().size()>1,"No surgeries found at pupular surgeries box in care page");
     }
 }
 

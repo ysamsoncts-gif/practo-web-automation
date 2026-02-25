@@ -14,7 +14,7 @@ public class BaseTest {
 
     @BeforeSuite
     public void setupExcelReport() {
-        ExcelUtils.initReport("reports", "Practo_Surgeries");
+        ExcelUtils.initReport("outputs", "Practo_");
     }
 
 

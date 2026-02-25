@@ -19,6 +19,7 @@ public class TC_19_NavigateToSurgeriesPage extends BaseTest {
                 "Navigation to Surgeries Failed."
         );
 
+
     }
 
 }
