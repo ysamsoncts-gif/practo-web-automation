@@ -12,9 +12,14 @@ public class TC_17_NavigateToMedicinePage extends BaseTest {
         MedicinePage mp = new MedicinePage(driver);
         mp.navigateToLabTest();
         mp.navigateToMedicine();
-
+        String actualTitle = driver.getTitle();
+        String expectedTitle = "Buy Medicines,Health Products Online | India's Most Reliable Online Medical Store | Practo";
+        Assert.assertEquals(
+                actualTitle,
+                expectedTitle,
+                "Page title mismatch after navigating to Medicine page."
+        );
     }
-
 }
 
 
