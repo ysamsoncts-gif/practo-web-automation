@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.ScreenshotUtil;
 import utilities.WaitUtils;
 
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ import java.util.Set;
 public class MedicinePage {
     private final WebDriver driver;
     private final WaitUtils wait;
+    private final ScreenshotUtil ss;
+
     @FindBy(xpath = "//a[@title = 'tests']") private WebElement labTest;
   //  @FindBy(xpath = "//div[text() = \"Medicines\"]") private WebElement medicine;
     private final By medicineBy = By.xpath("//div[text() = \"Medicines\"]");
@@ -29,10 +32,12 @@ public class MedicinePage {
    // @FindBy(className = "icon-ic_cart") private WebElement viewCartButton;
     private final By viewCartButton = By.className("button__primary");
     @FindBy (xpath = "//span[text() = \"Use my current location\"]")private WebElement currLocation;
+
     public MedicinePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WaitUtils(driver, 20);
         PageFactory.initElements(driver, this);
+        this.ss = new ScreenshotUtil();
     }
 
     public void navigateToLabTest()
@@ -42,6 +47,7 @@ public class MedicinePage {
     public void navigateToMedicine()
     {
         wait.clickable(medicineBy).click();
+        ss.takeScreenshot(driver,"MedicinePage");
     }
     public void navigateToSkin()
     {
@@ -70,6 +76,7 @@ public class MedicinePage {
         wait.clickable(viewCartButton);
         driver.findElement(viewCartButton).click();
         currLocation.click();
+        ss.takeScreenshot(driver,"MedicineCart");
 
     }
 

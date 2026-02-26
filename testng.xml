@@ -1,8 +1,30 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="UI Suite">
-    <test name="PractoWebPageAutomation">
+<suite name="Suite">
+    <listeners>
+        <listener class-name="utilities.ExtentReportManager"/>
+    </listeners>
+    <test name="Test">
         <classes>
-
+            <class name="testcases.TC_01_HomePageTitleValidation"/>
+            <class name="testcases.TC_02_HomePageHospitalListValidation"/>
+            <class name="testcases.TC_03_HomePageDoctorListValidation"/>
+            <class name="testcases.TC_05_FindDoctorsPagePhoneErrorMessageValidation"/>
+            <class name="testcases.TC_04_HomePageFormValidation"/>
+            <class name="testcases.TC_07_VerifyDiagnosticPage"/>
+            <class name="testcases.TC_08_VerifyTopCitiesPrintedAndStored"/>
+            <class name="testcases.TC_09_VerifySearchbox"/>
+            <class name="testcases.TC_13_NavigateToWellnessPage"/>
+            <class name="testcases.TC_14_DemoFormInvalidData"/>
+            <class name="testcases.TC_15_DemoFromValidData"/>
+            <class name ="testcases.TC_16_ListAllServices"/>
+            <class name = "testcases.TC_17_NavigateToMedicinePage"/>
+            <class name="testcases.TC_19_NavigateToSurgeriesPage"/>
+            <class name="testcases.TC_20_AppointmentFormFieldsValidation"/>
+            <class name="testcases.TC_21_AppointmentFormErrorMsgValidation"/>
+            <class name="testcases.TC_22_AppointmentFormSubmitWithInvalidData"/>
+            <class name="testcases.TC_23_AppointmentFormSubmitWithValidData"/>
+            <class name="testcases.TC_24_PopularSurgeriesListStoringAndValidation"/>
+            <class name="testcases.TC_25_ValidateDepartments"/>
         </classes>
     </test>
 </suite>
