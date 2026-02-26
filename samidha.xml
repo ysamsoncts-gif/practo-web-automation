@@ -7,6 +7,8 @@
             <class name="testcases.TC_15_DemoFromValidData"/>
             <class name ="testcases.TC_16_ListAllServices"/>
             <class name = "testcases.TC_17_NavigateToMedicinePage"/>
+            <class name = "testcases.TC_18_AddingMedicineToCart"/>
+            <class name = "testcases.TC_26_ValidatingSupportMails"/>
         </classes>
     </test>
 </suite>

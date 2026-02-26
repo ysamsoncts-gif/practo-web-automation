@@ -5,10 +5,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.CorporatePage;
 import pageobjects.MedicinePage;
+import utilities.Log;
 
 public class TC_17_NavigateToMedicinePage extends BaseTest {
     @Test
     public void navigateToMedicinePage(){
+        Log.info("Starting test case: NavigateToMedicinePage");
         MedicinePage mp = new MedicinePage(driver);
         mp.navigateToLabTest();
         mp.navigateToMedicine();
@@ -19,6 +21,7 @@ public class TC_17_NavigateToMedicinePage extends BaseTest {
                 expectedTitle,
                 "Page title mismatch after navigating to Medicine page."
         );
+        Log.info("Ending test case: NavigateToMedicinePage");
     }
 }
 
