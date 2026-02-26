@@ -8,7 +8,7 @@ import pageobjects.HomePage;
 
 import java.util.List;
 
-public class TC_08_VerifyTopCitiesPrintedAndStored extends BaseTest {
+public class TC_08_DiagnosticPageTopCitiesValidation extends BaseTest {
 
     @Test
     public void verifyTopCitiesPrintedAndStored() {

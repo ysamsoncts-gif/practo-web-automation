@@ -9,7 +9,7 @@ import pageobjects.DiagnosticPage;
 import java.util.List;
 
 @Test
-public class TC_09_VerifySearchbox extends BaseTest {
+public class TC_09_DiagnosticPageSearchboxValidation extends BaseTest {
     public void verifySearchBox() {
         DiagnosticPage diagnostic = new DiagnosticPage(driver);
 
@@ -20,7 +20,6 @@ public class TC_09_VerifySearchbox extends BaseTest {
         diagnostic.clickScroll();
 //        diagnostic.storePackageNames();
         diagnostic.printPackageDetails();
-
 
 //
 //        List<WebElement> names = diagnostic.getPackageNames();
