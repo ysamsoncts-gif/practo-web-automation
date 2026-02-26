@@ -12,7 +12,7 @@ public class BaseTest {
 
     protected WebDriver driver;
 
-    @BeforeSuite
+    @BeforeClass
     public void setupExcelReport() {
         ExcelUtils.initReport("outputs", "Practo_");
     }

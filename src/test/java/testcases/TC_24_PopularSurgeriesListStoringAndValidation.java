@@ -13,10 +13,11 @@ public class TC_24_PopularSurgeriesListStoringAndValidation extends BaseTest {
         SurgeriesPage sp = new SurgeriesPage(driver);
         sp.navigateToSurgeriesPage();
         Log.info("Starting test case: surgeriesListValidation");
-
-        sp.saveSurgeriesListToExcelFromList();
-        System.out.println(sp.surgeriesList().size());
         Assert.assertTrue(sp.surgeriesList().size()>1,"No surgeries found at pupular surgeries box in care page");
+        Log.info("Started to store the data into excel");
+        sp.saveSurgeriesListToExcelFromList();
+        Log.info("Successfully stored the data into excel");
+        Log.info("Successfully validated popular surgeries list");
     }
 }
 
