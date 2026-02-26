@@ -9,12 +9,17 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
+import utilities.ExcelUtils;
+import utilities.ScreenshotUtil;
 import utilities.WaitUtils;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class CorporatePage {
     private final WebDriver driver;
     private final WaitUtils wait;
+    private final ScreenshotUtil ss;
 
     @FindBy(id = "name")
     private WebElement name;
@@ -36,13 +41,17 @@ public class CorporatePage {
     private WebElement healthWellnessTab;
     @FindBy(xpath = "//li[text() = 'Our Services']")
     private WebElement ourService;
-    @FindBy(xpath = "//section[@id =\"service-umbrella\" ]//div[@class =\"u-text--bold text-gamma\"]")
-    private List<WebElement> serviceItems;
-
+    @FindBy(xpath = "//section[@id =\"service-umbrella\" ]//div[@class =\"u-text--bold text-gamma\"]")private List<WebElement> serviceItems;
+    @FindBy(xpath = "//span[text() = \"Security & help\"]") private WebElement security;
+    @FindBy(xpath = "//a[@event = \"Nav Bar:Interacted:Practo help\"]")private WebElement help;
+    @FindBy(xpath = "//a[@href = \"mailto:support@practo.com\"]") private WebElement supportMail;
+    @FindBy(xpath = "//a[@href='mailto:practo-nodal-officer-team@practo.com']") private WebElement nodalOfficerMail;
+    @FindBy(xpath = "//a[@href=\"mailto:practo-grievance-officer-team@practo.com\"]")private WebElement grievanceOfficerMail;
     public CorporatePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WaitUtils(driver, 20);
         PageFactory.initElements(driver, this);
+        this.ss = new ScreenshotUtil();
     }
 
     public void navigateToCorporateTab() {
@@ -51,6 +60,7 @@ public class CorporatePage {
 
     public void navigateToHealthWellnessPage() {
         healthWellnessTab.click();
+        ss.takeScreenshot(driver,"CorporatePage");
     }
 
     public void navigateToOurServices() {
@@ -69,15 +79,56 @@ public class CorporatePage {
         Select select1 = new Select(orgSize);
         select1.selectByIndex(n);
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        //js.executeScript("arguments[0].scrollIntoView(true);",submit);
         js.executeScript("window.scrollBy(0, 300);");
         Select select2 = new Select(interestedIn);
         select2.selectByIndex(m);
+        ss.takeScreenshot(driver,"ValidatingData");
     }
 
-    public void listOfAllServices() {
-        for (WebElement service : serviceItems) {
-            System.out.println(service.getText().trim());
+    public List<String> listOfAllServices(){
+        List<String> services = new ArrayList<>();
+        for(int i = 0;i<serviceItems.size();i++)
+        {
+            String service = serviceItems.get(i).getText().trim();
+            services.add(service);
         }
-    }
+    return services;
 }
+
+public void saveServicesToExcel()
+{
+    List<String> services = listOfAllServices();
+    ExcelUtils.writeList("services","Provided services",services);
+    ss.takeScreenshot(driver,"ServicesList");
+}
+
+
+public void navigateToContactPage()
+{
+    security.click();
+    help.click();
+}
+public String getSupportMail()
+{
+    wait.scrollIntoView(supportMail);
+    return supportMail.getText();
+}
+public String getNodalOfficerMail()
+{
+    wait.scrollIntoView(nodalOfficerMail);
+    return nodalOfficerMail.getText();
+}
+
+    public String getgrievanceOfficerMail()
+    {
+        wait.scrollIntoView(grievanceOfficerMail);
+        return grievanceOfficerMail.getText();
+    }
+    public boolean isSubmitBtnEnable()
+    {
+        return submit.isEnabled();
+    }
+
+}
+
+
