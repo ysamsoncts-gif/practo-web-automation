@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageobjects.DiagnosticPage;
 
 @Test
-public class TC_07_VerifyDiagnosticPage extends BaseTest {
+public class TC_07_DiagnosticPageTitleValidation extends BaseTest {
 
     public void getPageTitle(){
         DiagnosticPage diagnostic = new DiagnosticPage(driver);

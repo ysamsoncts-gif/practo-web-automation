@@ -18,9 +18,22 @@ public class WaitUtils {
         public WebElement visible(By locator) {
             return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         }
-        public WebElement clickable(By locator) {
-            return wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+    public WebElement clickable(By locator) {
+        if (locator == null) {
+            throw new IllegalArgumentException("locator must not be null");
         }
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public WebElement clickable(WebElement element) {
+        if (element == null) {
+            throw new IllegalArgumentException("element must not be null");
+        }
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+
         public boolean present(By locator) {
             try {
                 wait.until(ExpectedConditions.presenceOfElementLocated(locator));
@@ -50,4 +63,13 @@ public class WaitUtils {
                     .executeScript("arguments[0].scrollIntoView({block:'center'});", element);
         } catch (Exception ignored) {}
     }
+
+    public void safeClick(WebElement el) {
+        try {
+            el.click();
+        } catch (org.openqa.selenium.ElementClickInterceptedException e) {
+            ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+        }
+    }
+
 }
