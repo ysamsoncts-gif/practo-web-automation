@@ -15,6 +15,7 @@ target/
 
 
 target/
+AllDetails.xlsx
 .idea/
 *.iml
 logs/
