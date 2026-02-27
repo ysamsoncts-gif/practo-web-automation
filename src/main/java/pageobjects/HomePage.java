@@ -3,10 +3,12 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utilities.ExcelUtils;
 import utilities.ScreenshotUtil;
 import utilities.WaitUtils;
 
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage {
@@ -123,6 +125,23 @@ public class HomePage {
         }
     }
 
+    public List<String> extractHospitalList() {
+        List<WebElement> list = driver.findElements(resultHospitalNameLocator);
+        List<String> rows = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            String name = list.get(i).getText().trim();
+            if (!name.isEmpty()) {
+                rows.add(name);
+            }
+        }
+        return rows;
+    }
+
+    public void saveHospitalListToExcelFromList()  {
+        List<String> rows = extractHospitalList();
+        ExcelUtils.writeList("HospitalNames", "List of hospitals in JP Nagar,Bangalore", rows);
+    }
+
     public void selectGender(){
         WebElement clickGender = wait.clickable(genderTabLocator);
         clickGender.click();
@@ -189,6 +208,23 @@ public class HomePage {
         for(WebElement names:doctorNames){
             System.out.println(names.getText());
         }
+    }
+
+    public List<String> extractDoctorList() {
+        List<WebElement> list = driver.findElements(resultDoctorNameLocator);
+        List<String> rows = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            String name = list.get(i).getText().trim();
+            if (!name.isEmpty()) {
+                rows.add(name);
+            }
+        }
+        return rows;
+    }
+
+    public void saveDoctorListToExcelFromList()  {
+        List<String> rows = extractDoctorList();
+        ExcelUtils.writeList("DoctorNames", "List of hospitals in JP Nagar,Bangalore", rows);
     }
 
     public boolean verifyDoctorLocation(){

@@ -18,7 +18,7 @@ public class TC_02_HomePageHospitalListValidation extends BaseTest {
         System.out.println("Test Case 02 :");
         System.out.println("List of hospitals in JP Nagar:");
         home.storeHospitalName();
-
+        home.saveHospitalListToExcelFromList();
         Assert.assertTrue(home.verifyHospitalName(),"Listed hospitals are not located in JP Nagar");
     }
 }
