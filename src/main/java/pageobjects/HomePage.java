@@ -3,13 +3,17 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utilities.ScreenshotUtil;
 import utilities.WaitUtils;
+
+import java.security.PublicKey;
 import java.util.List;
 
 public class HomePage {
 
     private final WebDriver driver;
     private final WaitUtils wait;
+    private final ScreenshotUtil ss;
 
     public By searchBarLocator = By.xpath("//input[@placeholder='Search doctors, clinics, hospitals, etc.']");
 
@@ -22,8 +26,8 @@ public class HomePage {
     public By JPNagarOptionLocator = By.xpath("(//div[@data-qa-id='omni-suggestion-main'])[1]");
 
     public By resultHospitalLocationLocator = By.xpath("//span[contains(text(),\"JP Nagar\" )]");
-
     public By resultHospitalNameLocator = By.xpath("//h2[@class='line-1']");
+    public By resultHospitalLastNameLocator = By.xpath("(//h2[@class='line-1'])[10]");
 
     public By genderTabLocator= By.xpath("//div[@data-qa-id='doctor_gender_section']");
     public By maleDoctorTabLocator = By.xpath("//span[text()='Male Doctor']");
@@ -44,6 +48,7 @@ public class HomePage {
 
     public By resultDoctorNameLocator = By.xpath("//h2[@data-qa-id='doctor_name']");
     public By resultDoctorLocationLocator = By.xpath("//span[@data-qa-id='practice_city']");
+    public By resultDoctorLastNameLocator = By.xpath("(//h2[@data-qa-id='doctor_name'])[10]");
 
     public By loginSignupButtonLocator = By.xpath("//a[text()='Login / Signup']");
 
@@ -66,6 +71,7 @@ public class HomePage {
     public HomePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WaitUtils(driver, 20);
+        this.ss = new ScreenshotUtil();
     }
 
     public String getPageTitle() {
@@ -111,6 +117,7 @@ public class HomePage {
 
     public void storeHospitalName() {
         List<WebElement> hospitalNames = driver.findElements(resultHospitalNameLocator);
+        wait.scrollIntoView(driver.findElement(resultHospitalLastNameLocator));
         for (WebElement names : hospitalNames) {
             System.out.println(names.getText());
         }
@@ -178,6 +185,7 @@ public class HomePage {
 
     public void storeDoctorName(){
         List <WebElement> doctorNames = driver.findElements(resultDoctorNameLocator);
+        wait.scrollIntoView(driver.findElement(resultDoctorLastNameLocator));
         for(WebElement names:doctorNames){
             System.out.println(names.getText());
         }
@@ -204,6 +212,7 @@ public class HomePage {
     public void clickLoginButton(){
         WebElement clickLoginBtn = driver.findElement(loginButtonLocator);
         clickLoginBtn.click();
+        ss.takeScreenshot(driver,"Login_Form_Validation");
     }
 
     public String validatePhoneEmailErrorMessage(){
@@ -232,6 +241,7 @@ public class HomePage {
     public void clickSendOtpButton(){
         WebElement clickSendOtpBtn = wait.clickable(sendOtpButtonLocator);
         clickSendOtpBtn.click();
+        ss.takeScreenshot(driver,"Signup_Form_Validation");
     }
 
     public String validateNameErrorMessage(){
