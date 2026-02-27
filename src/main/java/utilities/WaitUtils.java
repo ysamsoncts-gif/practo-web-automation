@@ -72,4 +72,8 @@ public class WaitUtils {
         }
     }
 
+    public WebElement visible(WebElement locator) {
+        return wait.until(ExpectedConditions.visibilityOf(locator));
+    }
+
 }

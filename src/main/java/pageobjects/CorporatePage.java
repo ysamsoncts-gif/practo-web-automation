@@ -78,8 +78,9 @@ public class CorporatePage {
         emailId.sendKeys(emailIdd);
         Select select1 = new Select(orgSize);
         select1.selectByIndex(n);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0, 300);");
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollBy(0, 300);");
+        wait.scrollIntoView(interestedIn);
         Select select2 = new Select(interestedIn);
         select2.selectByIndex(m);
         ss.takeScreenshot(driver,"ValidatingData");
