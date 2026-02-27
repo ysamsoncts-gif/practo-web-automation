@@ -17,6 +17,8 @@ public class HomePage {
     private final WaitUtils wait;
     private final ScreenshotUtil ss;
 
+    public By practoLogoLocator = By.xpath("(//i[@class='practo_logo_new'])[3]");
+
     public By searchBarLocator = By.xpath("//input[@placeholder='Search doctors, clinics, hospitals, etc.']");
 
     public By hospitalOptionLocator = By.xpath("(//div[contains(text(),\"Hospital\")])[4]");
@@ -78,6 +80,11 @@ public class HomePage {
 
     public String getPageTitle() {
         return driver.getTitle();
+    }
+
+    public boolean isPageLogoDisplayed(){
+        WebElement logo = wait.visible(practoLogoLocator);
+        return logo.isDisplayed();
     }
 
     public void selectSearchHospitalClinic(String hospital) {

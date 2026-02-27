@@ -8,6 +8,7 @@
             <class name="testcases.TC_04_HomePageLoginFormValidation"/>
             <class name="testcases.TC_05_HomePageSignupFormValidation"/>
             <class name="testcases.TC_06_FindDoctorsPagePhoneErrorMessageValidation"/>
+            <class name="testcases.TC_027_HomePageLogoValidation"/>
         </classes>
     </test>
 </suite>
