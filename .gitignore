@@ -15,7 +15,7 @@ target/
 
 
 target/
-AllDetails.xlsx
+src/test/resources/testData/*.xlsx
 .idea/
 *.iml
 logs/
