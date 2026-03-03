@@ -7,6 +7,7 @@ import utilities.ExcelUtils;
 import utilities.Log;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.Map;
 public class TC_22_AppointmentFormSubmitWithInvalidData extends BaseTest {
     @Test
@@ -14,10 +15,8 @@ public class TC_22_AppointmentFormSubmitWithInvalidData extends BaseTest {
         SurgeriesPage sp = new SurgeriesPage(driver);
         sp.navigateToSurgeriesPage();
         Log.info("Starting test case: SubmitFormWithInvalidData");
-        String filePath = getClass().getClassLoader()
-                .getResource("testData/AllDetails.xlsx")
-                .getPath();
-        Log.info("Started reading data from excel");
+        String filePath = Paths.get("src/test/resources/testData/AllDetails.xlsx").toAbsolutePath().toString();
+
         Map<String, String> kv = ExcelUtils.readKeyValueSheet(filePath, "AppointmentFormInvalidData", false);
         String name = kv.getOrDefault("Name", "").trim();
         String contact = kv.getOrDefault("ContactNumber", "").trim();
