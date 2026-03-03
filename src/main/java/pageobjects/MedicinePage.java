@@ -1,13 +1,12 @@
 package pageobjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utilities.WaitUtils;
+import utilities.ScreenshotUtil;
+import utilities.CommonCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,24 +14,47 @@ import java.util.Set;
 
 public class MedicinePage {
     private final WebDriver driver;
-    private final WaitUtils wait;
-    @FindBy(xpath = "//a[@title = 'tests']") private WebElement labTest;
-  //  @FindBy(xpath = "//div[text() = \"Medicines\"]") private WebElement medicine;
-    private final By medicineBy = By.xpath("//div[text() = \"Medicines\"]");
-    @FindBy(xpath = "(//img[@class = \"u-shape-wid--100\"])[1]") private WebElement skin;
-    @FindBy (xpath = "//div[text() = \"Skin care\"]")private WebElement skinCare;
-    @FindBy(xpath = "//div[text() = \"Face wash and cleansers\"]")private WebElement faceWash;
-    @FindBy (xpath = "//div[@class=\"u-columns u-six\"]/button") private WebElement addButton;
-    @FindBy(xpath = "//input[@type = \"text\"]")private WebElement inputField;
-    private final By cartisafeTablet = By.xpath("//img[@alt=\"Cartisafe-d Tablet\"]");
-    @FindBy(xpath = "//span[text() = \"ADD TO CART\"]")private WebElement addToCartTablet;
-   // @FindBy(className = "icon-ic_cart") private WebElement viewCartButton;
-    private final By viewCartButton = By.className("button__primary");
-    @FindBy (xpath = "//span[text() = \"Use my current location\"]")private WebElement currLocation;
+    private final CommonCode cc;
+    private final ScreenshotUtil ss;
+
+    @FindBy(xpath = "//a[@title = 'tests']")
+    private WebElement labTest;
+
+    @FindBy(xpath = "//div[text() = \"Medicines\"]")
+    private WebElement medicineBy;
+
+    @FindBy(xpath = "(//img[@class = \"u-shape-wid--100\"])[1]")
+    private WebElement skin;
+
+    @FindBy (xpath = "//div[text() = \"Skin care\"]")
+    private WebElement skinCare;
+
+    @FindBy(xpath = "//div[text() = \"Face wash and cleansers\"]")
+    private WebElement faceWash;
+
+    @FindBy (xpath = "//div[@class=\"u-columns u-six\"]/button")
+    private WebElement addBtn;
+
+    @FindBy(xpath = "//input[@type = \"text\"]")
+    private WebElement inputField;
+
+    @FindBy(xpath = "//img[@alt='Cartisafe-d Tablet']")
+    private WebElement cartisafeTablet;
+
+    @FindBy(xpath = "//span[text() = \"ADD TO CART\"]")
+    private WebElement addToCartTabletBtn;
+
+    @FindBy(className="button__primary")
+    private WebElement viewCartBtn;
+
+    @FindBy (xpath = "//span[text() = \"Use my current location\"]")
+    private WebElement currLocation;
+
     public MedicinePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WaitUtils(driver, 20);
+        this.cc = new CommonCode(driver, 20);
         PageFactory.initElements(driver, this);
+        this.ss = new ScreenshotUtil();
     }
 
     public void navigateToLabTest()
@@ -41,12 +63,12 @@ public class MedicinePage {
     }
     public void navigateToMedicine()
     {
-        wait.clickable(medicineBy).click();
+        cc.clickable(medicineBy).click();
+        ss.takeScreenshot(driver,"MedicinePage");
     }
     public void navigateToSkin()
     {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",skin);
+        cc.scrollIntoView(skin);
         skin.click();
     }
 
@@ -56,24 +78,19 @@ public class MedicinePage {
         driver.switchTo().window(windowList.get(1));
         new Actions(driver).moveToElement(skinCare).perform();
         new Actions(driver).moveToElement(faceWash).click().perform();
-        addButton.click();
+        addBtn.click();
         inputField.sendKeys("cartisafe");
         inputField.click();
 
-        WebElement product = wait.visible(cartisafeTablet);
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].scrollIntoView({block:'center'});", product);
+        WebElement product = cc.visible(cartisafeTablet);
+        cc.scrollIntoView(product);
         product.click();
-        addToCartTablet.click();
-//        js.executeScript("window.scrollBy(0,200);");
-        wait.scrollIntoView(driver.findElement(viewCartButton));
-        wait.clickable(viewCartButton);
-        driver.findElement(viewCartButton).click();
+        addToCartTabletBtn.click();
+
+        cc.scrollIntoView(viewCartBtn);
+        viewCartBtn.click();
         currLocation.click();
+        ss.takeScreenshot(driver,"MedicineCart");
 
     }
-
-
-
-
 }

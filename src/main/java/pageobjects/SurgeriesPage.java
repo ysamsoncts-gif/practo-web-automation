@@ -2,7 +2,7 @@ package pageobjects;
 
 import org.openqa.selenium.*;
 import utilities.ExcelUtils;
-import utilities.WaitUtils;
+import utilities.CommonCode;
 import utilities.ScreenshotUtil;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SurgeriesPage {
     private final WebDriver driver;
-    private final WaitUtils wait;
+    private final CommonCode wait;
     private final ScreenshotUtil Ss;
 
     private final By desktopSurgeriesLocator = By.xpath("//a[@title=\"surgery\" and @event=\"Nav Drawer:Interacted:Surgery\"]");
@@ -30,7 +30,7 @@ public class SurgeriesPage {
 
     public SurgeriesPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WaitUtils(driver, 20);
+        this.wait = new CommonCode(driver, 20);
         this.Ss= new ScreenshotUtil();
     }
     public void navigateToSurgeriesPage() {

@@ -39,6 +39,7 @@ public class TC_03_HomePageDoctorListValidation extends BaseTest {
         System.out.println("Test Case 03 :");
         System.out.println("List of doctors according to the applied filters :");
         home.storeDoctorName();
+        home.saveDoctorListToExcelFromList();
         Assert.assertTrue(home.verifyDoctorLocation(),"Listed doctors are not located in JP Nagar");
     }
 }

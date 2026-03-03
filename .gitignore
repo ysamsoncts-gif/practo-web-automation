@@ -15,6 +15,7 @@ target/
 
 
 target/
+src/test/resources/testData/*.xlsx
 .idea/
 *.iml
 logs/

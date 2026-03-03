@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
 
-public class TC_01_HomePageTitleValidation extends BaseTest {
+public class TC_01_HomePageElementsValidation extends BaseTest {
 
     @Test
     public void verifyPageTitle(){
@@ -15,5 +15,7 @@ public class TC_01_HomePageTitleValidation extends BaseTest {
         Assert.assertEquals(actualTitle, expectedTitle, "Test case 01 failed: Page title does not match!");
         System.out.println("Test case 01 :");
         System.out.println("Page title matched!");
+        System.out.println("Logo is displayed :"+home.isPageLogoDisplayed());
+        Assert.assertTrue(home.isPageLogoDisplayed(), "Login is not displayed");
     }
 }
