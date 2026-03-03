@@ -3,13 +3,13 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import utilities.WaitUtils;
+import utilities.CommonCode;
 import java.util.List;
 
 public class HomePage {
 
     private final WebDriver driver;
-    private final WaitUtils wait;
+    private final CommonCode wait;
 
     public By searchBarLocator = By.xpath("//input[@placeholder='Search doctors, clinics, hospitals, etc.']");
 
@@ -65,7 +65,7 @@ public class HomePage {
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WaitUtils(driver, 20);
+        this.wait = new CommonCode(driver, 20);
     }
 
     public String getPageTitle() {

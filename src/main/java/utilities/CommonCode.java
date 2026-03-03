@@ -8,10 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class WaitUtils {
+public class CommonCode {
         private final WebDriver driver;
         private final WebDriverWait wait;
-        public WaitUtils(WebDriver driver, int seconds) {
+        public CommonCode(WebDriver driver, int seconds) {
             this.driver = driver;
             this.wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         }
@@ -70,6 +70,15 @@ public class WaitUtils {
         } catch (org.openqa.selenium.ElementClickInterceptedException e) {
             ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
         }
+    }
+
+    public WebElement visible(WebElement locator) {
+        return wait.until(ExpectedConditions.visibilityOf(locator));
+    }
+
+    public String getText(WebElement element)
+    {
+        return element.getText();
     }
 
 }
