@@ -5,7 +5,7 @@
     </listeners>
     <test name="Test">
         <classes>
-            <class name="testcases.TC_01_HomePageTitleValidation"/>
+            <class name="testcases.TC_01_HomePageElementsValidation"/>
             <class name="testcases.TC_02_HomePageHospitalListValidation"/>
             <class name="testcases.TC_03_HomePageDoctorListValidation"/>
             <class name="testcases.TC_05_FindDoctorsPagePhoneErrorMessageValidation"/>
