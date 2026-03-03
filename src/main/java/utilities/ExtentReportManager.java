@@ -20,6 +20,9 @@ public class ExtentReportManager implements ITestListener {
         extent.attachReporter(sparkReporter);
         extent.setSystemInfo("Environment", "QA");
         extent.setSystemInfo("Tester", "Y Samson");
+        extent.setSystemInfo("Tester", "Samidha");
+        extent.setSystemInfo("Tester", "Aniket");
+        extent.setSystemInfo("Tester", "Paridhi");
     }
 
     public void onTestSuccess(ITestResult result) {
