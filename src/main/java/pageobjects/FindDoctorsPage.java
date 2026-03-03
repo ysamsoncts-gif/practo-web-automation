@@ -4,14 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import utilities.WaitUtils;
+import utilities.CommonCode;
 
 import java.util.Set;
 
 public class FindDoctorsPage {
 
     private final WebDriver driver;
-    private final WaitUtils wait;
+    private final CommonCode wait;
 
     public By productTabLocator = By.xpath("(//div[@class='product-tab__title'])[1]");
 
@@ -47,7 +47,7 @@ public class FindDoctorsPage {
 
     public FindDoctorsPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WaitUtils(driver, 20);
+        this.wait = new CommonCode(driver, 20);
     }
 
     public void navigateToFindDoctorsTab(){
