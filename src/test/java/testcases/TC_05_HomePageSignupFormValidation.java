@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.FindDoctorsPage;
 import pageobjects.HomePage;
+import utilities.Log;
 
 public class TC_05_HomePageSignupFormValidation extends BaseTest {
 
@@ -17,20 +18,15 @@ public class TC_05_HomePageSignupFormValidation extends BaseTest {
         home.navigateToSignupPage();
         home.clickSendOtpButton();
 
-        System.out.println("Test case 05 :");
-        System.out.println("Signup Form ");
-        System.out.println("-------------");
-
-        System.out.println("Name field error message is displayed :"+home.validateNameErrorMessage());
-        System.out.println();
+        Log.info("Test case 05 :");
+        Log.info("Signup Form ");
+        Log.info("Name field error message is displayed :"+home.validateNameErrorMessage());
         Assert.assertEquals(home.validateNameErrorMessage(),"Full Name field cannot be empty","Name field error message not displayed");
 
-        System.out.println("Phone number field error message is displayed :"+home.validatePhoneErrorMessage());
-        System.out.println();
+        Log.info("Phone number field error message is displayed :"+home.validatePhoneErrorMessage());
         Assert.assertEquals(home.validatePhoneErrorMessage(),"Mobile Number field cannot be empty","Mobile field error message not displayed");
 
-        System.out.println("Password field error message is displayed :"+home.validatePasswordMessage());
-        System.out.println();
+        Log.info("Password field error message is displayed :"+home.validatePasswordMessage());
         Assert.assertEquals(home.validatePasswordMessage(),"Password field cannot be empty","Password field error message not displayed");
     }
 }

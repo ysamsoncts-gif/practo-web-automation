@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.FindDoctorsPage;
 import pageobjects.HomePage;
+import utilities.Log;
 
 public class TC_04_HomePageLoginFormValidation extends BaseTest {
 
@@ -16,22 +17,17 @@ public class TC_04_HomePageLoginFormValidation extends BaseTest {
         home.sendDataToInputBox("797776969","demoPassword");
         home.clickLoginButton();
 
-        System.out.println("Test case 04 :");
-        System.out.println("Login Form ");
-        System.out.println("-------------");
-
-        System.out.println("Invalid email/mobile input error message is displayed :"+home.validatePhoneEmailErrorMessage());
-        System.out.println();
+        Log.info("Test case 04 :");
+        Log.info("Login Form ");
+        Log.info("Invalid email/mobile input error message is displayed :"+home.validatePhoneEmailErrorMessage());
         Assert.assertEquals(home.validatePhoneEmailErrorMessage(),"Email/Mobile is not valid","Phone number/Email error message not displayed");
 
         home.sendDataToInputBoxB("","");
         home.clickLoginButton();
 
-        System.out.println("Email/Mobile empty input box error message is displayed :"+home.validatePhoneEmailErrorMessage());
-        System.out.println();
+        Log.info("Email/Mobile empty input box error message is displayed :"+home.validatePhoneEmailErrorMessage());
         Assert.assertEquals(home.validatePhoneEmailErrorMessage(),"Mobile Number / Email ID field cannot be empty","Phone number/Email input box empty error message not displayed");
-        System.out.println("Password empty input box error message is displayed :"+home.validatePasswordErrorMessage());
-        System.out.println();
+        Log.info("Password empty input box error message is displayed :"+home.validatePasswordErrorMessage());
         Assert.assertEquals(home.validatePasswordErrorMessage(),"Password field cannot be empty","Password input box empty error message not displayed");
     }
 }

@@ -4,6 +4,7 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
+import utilities.Log;
 
 public class TC_02_HomePageHospitalListValidation extends BaseTest {
 
@@ -15,8 +16,8 @@ public class TC_02_HomePageHospitalListValidation extends BaseTest {
         home.selectSearchLocation("Bangalore");
         home.selectSubSearchLocation("Jp Nagar");
 
-        System.out.println("Test Case 02 :");
-        System.out.println("List of hospitals in JP Nagar:");
+        Log.info("Test Case 02 :");
+        Log.info("List of hospitals in JP Nagar:");
         home.storeHospitalName();
         home.saveHospitalListToExcelFromList();
         Assert.assertTrue(home.verifyHospitalName(),"Listed hospitals are not located in JP Nagar");

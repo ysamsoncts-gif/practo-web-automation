@@ -4,6 +4,7 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.FindDoctorsPage;
+import utilities.Log;
 
 public class TC_06_FindDoctorsPagePhoneErrorMessageValidation extends BaseTest {
 
@@ -27,8 +28,8 @@ public class TC_06_FindDoctorsPagePhoneErrorMessageValidation extends BaseTest {
 
         doctors.sendPhoneNumber();
 
-        System.out.println("Test Case 06 :");
-        System.out.println("Invalid phone number error is displayed (Test case passed) :"+doctors.validateErrorMessage());
+        Log.info("Test Case 06 :");
+        Log.info("Invalid phone number error is displayed (Test case passed) :"+doctors.validateErrorMessage());
         Assert.assertEquals(doctors.validateErrorMessage(),"Number is not valid","Phone number error message not displayed");
     }
 }

@@ -4,6 +4,7 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
+import utilities.Log;
 
 public class TC_03_HomePageDoctorListValidation extends BaseTest {
 
@@ -36,8 +37,8 @@ public class TC_03_HomePageDoctorListValidation extends BaseTest {
         home.selectSortByFilter();
         home.selectExperienceFilter();
 
-        System.out.println("Test Case 03 :");
-        System.out.println("List of doctors according to the applied filters :");
+        Log.info("Test Case 03 :");
+        Log.info("List of doctors according to the applied filters :");
         home.storeDoctorName();
         home.saveDoctorListToExcelFromList();
         Assert.assertTrue(home.verifyDoctorLocation(),"Listed doctors are not located in JP Nagar");

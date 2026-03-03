@@ -4,6 +4,7 @@ import basetest.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
+import utilities.Log;
 
 public class TC_01_HomePageElementsValidation extends BaseTest {
 
@@ -13,9 +14,9 @@ public class TC_01_HomePageElementsValidation extends BaseTest {
         String expectedTitle = "Practo | Video Consultation with Doctors, Book Doctor Appointments, Order Medicine, Diagnostic Tests";
         String actualTitle = home.getPageTitle();
         Assert.assertEquals(actualTitle, expectedTitle, "Test case 01 failed: Page title does not match!");
-        System.out.println("Test case 01 :");
-        System.out.println("Page title matched!");
-        System.out.println("Logo is displayed :"+home.isPageLogoDisplayed());
+        Log.info("Test case 01 :");
+        Log.info("Page title matched!");
+        Log.info("Logo is displayed :"+home.isPageLogoDisplayed());
         Assert.assertTrue(home.isPageLogoDisplayed(), "Login is not displayed");
     }
 }

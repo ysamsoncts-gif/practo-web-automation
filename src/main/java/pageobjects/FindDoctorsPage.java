@@ -1,9 +1,10 @@
 package pageobjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import utilities.ScreenshotUtil;
 import utilities.CommonCode;
 
@@ -15,42 +16,63 @@ public class FindDoctorsPage {
     private final CommonCode wait;
     private final ScreenshotUtil ss;
 
-    public By productTabLocator = By.xpath("(//div[@class='product-tab__title'])[1]");
+    @FindBy (xpath = "(//div[@class='product-tab__title'])[1]")
+    private WebElement productTabLocator;
 
-    public By findDoctorsLocationSearchBarLocator = By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
-    public By puneOptionLocator = By.xpath("(//div[text()='Pune'])[1]");
+    @FindBy (xpath = "//input[@data-qa-id='omni-searchbox-locality']")
+    private WebElement findDoctorsLocationSearchBarLocator;
 
-    public By findDoctorsSearchDoctorsTabLocator = By.xpath("//input[@data-qa-id='omni-searchbox-keyword']");
-    public By dentistOptionLocator = By.xpath("//div[text()='Dentist']");
+    @FindBy (xpath = "(//div[text()='Pune'])[1]")
+    private WebElement puneOptionLocator;
 
-    public By genderBarLocator = By.xpath("//div[@data-qa-id='doctor_gender_section']");
-    public By femaleOptionLocator = By.xpath("//li[@data-qa-id='female']");
+    @FindBy (xpath = "//input[@data-qa-id='omni-searchbox-keyword']")
+    private WebElement findDoctorsSearchDoctorsTabLocator;
 
-    public By reviewBarLocator = By.xpath("//div[@data-qa-id='doctor_review_count_section']");
-    public By reviewFirstOptionLocator = By.xpath("(//li[@role='option'])[3]");
+    @FindBy (xpath = "//div[text()='Dentist']")
+    private WebElement dentistOptionLocator;
 
-    public By experienceBarLocator = By.xpath("//div[@data-qa-id='years_of_experience_section']");
-    public By experienceFirstOptionLocator = By.xpath("(//li[@role='option'])[6]");
+    @FindBy (xpath = "//div[@data-qa-id='doctor_gender_section']")
+    private WebElement genderBarLocator;
 
-    public By allFilterBarLocator = By.xpath("//span[@data-qa-id='all_filters']");
-    public By tomorrowRadioLocator = By.xpath("(//div[@data-qa-id='Availability_radio'])[3]");
+    @FindBy (xpath = "//li[@data-qa-id='female']")
+    private WebElement femaleOptionLocator;
 
-    public By doctorNameLocator = By.xpath("(//h2[@data-qa-id='doctor_name'])[1]");
+    @FindBy (xpath = "//div[@data-qa-id='doctor_review_count_section']")
+    private WebElement reviewBarLocator;
+    @FindBy (xpath = "(//li[@role='option'])[3]")
+    private WebElement reviewFirstOptionLocator;
+    @FindBy (xpath = "//div[@data-qa-id='years_of_experience_section']")
+    private WebElement experienceBarLocator;
+    @FindBy (xpath = "(//li[@role='option'])[6]")
+    private WebElement experienceFirstOptionLocator;
+    @FindBy (xpath = "//span[@data-qa-id='all_filters']")
+    private WebElement allFilterBarLocator;
+    @FindBy (xpath = "(//div[@data-qa-id='Availability_radio'])[3]")
+    private WebElement tomorrowRadioLocator;
 
-    public By tomorrowTabLocator = By.xpath("//div[text()='tomorrow']");
-    public By timeLocator = By.xpath("//span[text()='12:00 PM']");
+    @FindBy (xpath = "(//h2[@data-qa-id='doctor_name'])[1]")
+    private WebElement doctorNameLocator;
 
-    public By mobileNumberBarLocator = By.xpath("//input[@placeholder='Mobile Number']");
-    public By continueButtonLocator = By.xpath("//button[text()='Continue']");
-    public By errorTextLocator = By.xpath("//div[@class='o-textbox__error']");
+    @FindBy (xpath = "//div[text()='tomorrow']")
+    private WebElement tomorrowTabLocator;
 
+    @FindBy (xpath = "//span[text()='12:00 PM']")
+    private WebElement timeLocator;
 
+    @FindBy (xpath = "//input[@placeholder='Mobile Number']")
+    private WebElement mobileNumberBarLocator;
 
+    @FindBy (xpath = "//button[text()='Continue']")
+    private WebElement continueButtonLocator;
+
+    @FindBy (xpath = "//div[@class='o-textbox__error']")
+    private  WebElement errorTextLocator;
 
     public FindDoctorsPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new CommonCode(driver, 20);
         this.ss = new ScreenshotUtil();
+        PageFactory.initElements(driver, this);
     }
 
     public void navigateToFindDoctorsTab(){
@@ -58,52 +80,42 @@ public class FindDoctorsPage {
     }
 
     public void findDoctorsTabSearchDoctors(){
-        WebElement searchDoctor = wait.visible(findDoctorsSearchDoctorsTabLocator);
-        searchDoctor.sendKeys("Dentist");
+       wait.visible(findDoctorsSearchDoctorsTabLocator).sendKeys("Dentist");
         wait.clickable(dentistOptionLocator).click();
     }
 
     public void findDoctorsTabSearchLocation(){
-        WebElement searchLocation = wait.visible(findDoctorsLocationSearchBarLocator);
-        searchLocation.clear();
-        searchLocation.sendKeys("Pune");
-        searchLocation.click();
+       wait.visible(findDoctorsLocationSearchBarLocator);
+        findDoctorsLocationSearchBarLocator.clear();
+        findDoctorsLocationSearchBarLocator.sendKeys("Pune");
+        findDoctorsLocationSearchBarLocator.click();
         wait.clickable(puneOptionLocator).click();
     }
 
     public void selectGenderFilter(){
-        WebElement clickGenderTab = wait.clickable(genderBarLocator);
-        clickGenderTab.click();
-        WebElement clickFemaleOption = wait.clickable(femaleOptionLocator);
-        clickFemaleOption.click();
+       wait.clickable(genderBarLocator).click();
+       wait.clickable(femaleOptionLocator).click();
     }
 
     public void selectFeedbackFilter(){
-        WebElement clickReviewBar= wait.clickable(reviewBarLocator);
-        clickReviewBar.click();
-        WebElement clickFirstOption = wait.clickable(reviewFirstOptionLocator);
-        clickFirstOption.click();
+        wait.clickable(reviewBarLocator).click();
+        wait.clickable(reviewFirstOptionLocator).click();
     }
 
     public void selectExperienceFilter(){
-        WebElement clickExperienceBar = wait.clickable(experienceBarLocator);
-        clickExperienceBar.click();
-        WebElement clickFirstOption = wait.clickable(experienceFirstOptionLocator);
-        clickFirstOption.click();
+        wait.clickable(experienceBarLocator).click();
+        wait.clickable(experienceFirstOptionLocator).click();
     }
 
     public void selectALlFilters(){
-        WebElement clickAllFilters = wait.clickable(allFilterBarLocator);
-        clickAllFilters.click();
-        WebElement clickRadio = wait.clickable(tomorrowRadioLocator);
-        clickRadio.click();
+        wait.clickable(allFilterBarLocator).click();
+        wait.clickable(tomorrowRadioLocator).click();
     }
 
     public void navigateToDoctorBookingTab(){
         String originalWindow = driver.getWindowHandle();
 
-        WebElement clickDoctorName = wait.visible(doctorNameLocator);
-        clickDoctorName.click();
+        wait.visible(doctorNameLocator).click();
 
         Set<String> windowHandles = driver.getWindowHandles();
 
@@ -119,24 +131,19 @@ public class FindDoctorsPage {
     }
 
     public void selectBookingTime(){
-        WebElement clickTomorrow = wait.visible(tomorrowTabLocator);
-        clickTomorrow.click();
-        WebElement clickTime = driver.findElement(timeLocator);
-        clickTime.click();
+        wait.visible(tomorrowTabLocator).click();
+        timeLocator.click();
     }
 
     public void sendPhoneNumber(){
         Actions action = new Actions(driver);
-        WebElement clickMobileInput = wait.visible(mobileNumberBarLocator);
-        clickMobileInput.click();
-        clickMobileInput.sendKeys("797776");
-        WebElement continueButton = driver.findElement(continueButtonLocator);
-        action.click(continueButton).build().perform();
+        wait.visible(mobileNumberBarLocator).click();
+        mobileNumberBarLocator.sendKeys("797776");
+        action.click(continueButtonLocator).build().perform();
         ss.takeScreenshot(driver,"Doctor_Booking_Form_Validation");
     }
 
     public String validateErrorMessage(){
-        WebElement errorMessage = wait.visible(errorTextLocator);
-        return  errorMessage.getText();
+       return wait.visible(errorTextLocator).getText();
     }
 }
