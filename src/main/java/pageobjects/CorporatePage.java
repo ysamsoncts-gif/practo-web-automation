@@ -46,7 +46,7 @@ public class CorporatePage {
     private WebElement ourService;
 
     @FindBy(xpath = "//section[@id =\"service-umbrella\" ]//div[@class =\"u-text--bold text-gamma\"]")
-    private List<WebElement> serviceItems;
+    private List<WebElement> serviceItemsLst;
 
     @FindBy(xpath = "//span[text() = \"Security & help\"]")
     private WebElement security;
@@ -73,20 +73,17 @@ public class CorporatePage {
     public void navigateToCorporateTab() {
         navCorporateTab.click();
     }
-
     public void navigateToHealthWellnessPage() {
         healthWellnessTab.click();
         ss.takeScreenshot(driver,"CorporatePage");
     }
-
     public void navigateToOurServices() {
         ourService.click();
     }
     public int getSizeserviceItems()
     {
-        return this.serviceItems.size();
+        return this.serviceItemsLst.size();
     }
-
     public void validatingData(String namee, String organizationNamee, String contactNumberr, String emailIdd, int n, int m) {
         name.sendKeys(namee);
         orgName.sendKeys(organizationNamee);
@@ -102,34 +99,34 @@ public class CorporatePage {
 
     public List<String> listOfAllServices(){
         List<String> services = new ArrayList<>();
-        for(int i = 0;i<serviceItems.size();i++)
+        for(int i = 0; i< serviceItemsLst.size(); i++)
         {
-            String service = serviceItems.get(i).getText().trim();
+            String service = serviceItemsLst.get(i).getText().trim();
             services.add(service);
         }
     return services;
-}
-public void saveServicesToExcel()
-{
-    List<String> services = listOfAllServices();
-    ExcelUtils.writeList("services","Provided services",services);
-    ss.takeScreenshot(driver,"ServicesList");
-}
-public void navigateToContactPage()
-{
-    security.click();
-    help.click();
-}
-public String getSupportMailLnk()
-{
-    cc.scrollIntoView(supportMailLnk);
-    return cc.getText(supportMailLnk);
-}
-public String getNodalOfficerMailLnk()
-{
-    cc.scrollIntoView(nodalOfficerMailLnk);
-    return cc.getText(nodalOfficerMailLnk);
-}
+    }
+    public void saveServicesToExcel()
+    {
+        List<String> services = listOfAllServices();
+        ExcelUtils.writeList("services","Provided services",services);
+        ss.takeScreenshot(driver,"ServicesList");
+    }
+    public void navigateToContactPage()
+    {
+        security.click();
+        help.click();
+    }
+    public String getSupportMailLnk()
+    {
+        cc.scrollIntoView(supportMailLnk);
+        return cc.getText(supportMailLnk);
+    }
+    public String getNodalOfficerMailLnk()
+    {
+        cc.scrollIntoView(nodalOfficerMailLnk);
+        return cc.getText(nodalOfficerMailLnk);
+    }
     public String getgrievanceOfficerMail()
     {
         cc.scrollIntoView(grievanceOfficerMailLnk);
