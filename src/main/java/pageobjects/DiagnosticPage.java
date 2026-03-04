@@ -101,10 +101,6 @@ public class    DiagnosticPage {
     @FindBy (xpath = "(//div[text()='Required'])[2]")
     private WebElement errorEmail;
 
-    //take screenshot
-
-
-
 //Methods
     public DiagnosticPage(WebDriver driver) {
         this.driver = driver;
@@ -114,12 +110,15 @@ public class    DiagnosticPage {
     }
 
     public void navigateToDiagnosticPage() {
+
         bookDiagnosticTab.click();
     }
     public String GetPageTitle() {
+
         return driver.getTitle();
     }
     public void waitForTopCities() {
+
         wait.visible(topCities);
     }
 
