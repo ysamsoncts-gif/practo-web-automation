@@ -94,8 +94,6 @@ public class SurgeriesPage {
         return cc.getText(pageHeaderText);
     }
     public boolean isLogoDisplayed(){
-        System.out.println("logo displayed "+pageLogo.isDisplayed());
-//        System.out.println("logo enabled "+pageLogo.isEnabled());
         return cc.isElementDisplayed(pageLogo);
     }
     public String getLogoAttribute(String attribute){
