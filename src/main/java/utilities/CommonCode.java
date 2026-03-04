@@ -81,4 +81,8 @@ public class CommonCode {
         return element.getText();
     }
 
+    public boolean isElementDisplayed(WebElement ele){
+            return ele.isDisplayed();
+    };
+
 }
