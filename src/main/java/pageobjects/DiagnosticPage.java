@@ -4,6 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import utilities.ExcelUtils;
+import utilities.ScreenshotUtil;
 import utilities.CommonCode;
 
 import java.math.BigDecimal;
@@ -13,20 +17,26 @@ import java.util.List;
 public class    DiagnosticPage {
     private WebDriver driver;
     private final CommonCode wait;
+    private final ScreenshotUtil ss;
+
+
+    // public By bookDiagnosticTab = By.xpath("//span[text()='Book Diagnostic Tests']");
+    @FindBy (xpath = "//span[text()='Book Diagnostic Tests']")
+    private WebElement bookDiagnosticTab;
 
     public By topCities = By.xpath(" //div[@class=\"u-margint--standard o-f-color--primary\"]");
 
-//    public By citySearchBox = By.xpath("//input[@placeholder=\"Search for city\"]");
+    //    public By citySearchBox = By.xpath("//input[@placeholder=\"Search for city\"]");
     @FindBy (xpath = "//input[@placeholder=\"Search for city\"]")
     private WebElement citySearchBox;
 
-//    public By cityOption = By.xpath("(//div[text()='Pune'])[1]");
+    //    public By cityOption = By.xpath("(//div[text()='Pune'])[1]");
     @FindBy (xpath = "(//div[text()='Pune'])[1]")
     private WebElement cityOption;
 
     public By packageName = By.xpath("//h3[@data-aid=\"popular-health-packages-card-title\"]");
 
-//    public By scrollBtn = By.xpath("(//div[@class='slick-arrow-wrapper'])[2]");
+    //    public By scrollBtn = By.xpath("(//div[@class='slick-arrow-wrapper'])[2]");
     @FindBy(xpath = "(//div[@class='slick-arrow-wrapper'])[2]" )
     private WebElement scrollBtn;
 
@@ -41,10 +51,10 @@ public class    DiagnosticPage {
 
     public By testContainerLocator = By.xpath("//div[@class=\"u-pointer u-shadow--hover u-margin--less c-top-test-card\"]");
 
-//    public By cartBtn = By.xpath("//div[@class=\"c-global-cart u-pointer\"]");
+    //    public By cartBtn = By.xpath("//div[@class=\"c-global-cart u-pointer\"]");
     @FindBy (xpath = "//div[@class=\"c-global-cart u-pointer\"]" )
     private WebElement cartBtn;
-//    public By proceedCheckout = By.xpath("//div[contains(text(),'Proceed')]");
+    //    public By proceedCheckout = By.xpath("//div[contains(text(),'Proceed')]");
     @FindBy (xpath = "//div[contains(text(),'Proceed')]" )
     private WebElement proceedCheckout;
 
@@ -54,27 +64,27 @@ public class    DiagnosticPage {
     @FindBy (xpath ="//input[@data-aid=\"patient-name\"]")
     private WebElement nameField;
 
-//    public By Phone_Number = By.xpath("//input[@type=\"tel\"]");
+    //    public By Phone_Number = By.xpath("//input[@type=\"tel\"]");
     @FindBy (xpath = "//input[@type=\"tel\"]" )
     private WebElement phNumber;
 
-//    public By Email = By.xpath("//input[@type=\"email\"]");
+    //    public By Email = By.xpath("//input[@type=\"email\"]");
     @FindBy (xpath = "//input[@type=\"email\"]" )
     private WebElement emailId;
 
-//    public By Gender_Male = By.xpath("//div[@data-aid='patient-gender-selected-MALE']");
+    //    public By Gender_Male = By.xpath("//div[@data-aid='patient-gender-selected-MALE']");
     @FindBy (xpath = "//div[@data-aid='patient-gender-selected-MALE']")
     private WebElement genderMale;
 
-  //  public By Dob_Day = By.xpath("//input[@data-aid=\"patient-age\"]");
+    //  public By Dob_Day = By.xpath("//input[@data-aid=\"patient-age\"]");
     @FindBy (xpath = "//input[@data-aid=\"patient-age\"]")
     private WebElement dobAge;
 
-//    public By Dob_Year_Dropdown = By.xpath("//div[contains(@class,'select')]//div[contains(text(),'Years') or contains(.,'Year')]");
+    //    public By Dob_Year_Dropdown = By.xpath("//div[contains(@class,'select')]//div[contains(text(),'Years') or contains(.,'Year')]");
     @FindBy (xpath = "//select [@class='c-order-v2__age__select']")
     private WebElement dobYearDropdown;
 
-  //  public By ContinueBtn = By.xpath("//input[@data-aid=\"order-continue-button\"]");
+    //  public By ContinueBtn = By.xpath("//input[@data-aid=\"order-continue-button\"]");
     @FindBy (xpath ="//input[@data-aid=\"order-continue-button\"]")
     private WebElement continueBtn;
 
@@ -95,10 +105,12 @@ public class    DiagnosticPage {
 
 
 
-//Methods
+    //Methods
     public DiagnosticPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new CommonCode(driver, 20);
+        PageFactory.initElements(driver, this);
+        this.ss = new ScreenshotUtil();
     }
 
     public void navigateToDiagnosticPage() {
@@ -164,26 +176,26 @@ public class    DiagnosticPage {
     public void clickScroll(){
 
         Actions action = new Actions(driver);
-        }
+    }
 
     public void printPackageDetails() {
-    List<WebElement> names  = driver.findElements(packageName);
-    List<WebElement> ages   = driver.findElements(packageAgeGroup);
-    List<WebElement> prices = driver.findElements(packagePrice);
-    System.out.println("======= POPULAR HEALTH PACKAGES =======");
+        List<WebElement> names  = driver.findElements(packageName);
+        List<WebElement> ages   = driver.findElements(packageAgeGroup);
+        List<WebElement> prices = driver.findElements(packagePrice);
+        System.out.println("======= POPULAR HEALTH PACKAGES =======");
 
-    for (int i = 0; i < names.size(); i++) {
+        for (int i = 0; i < names.size(); i++) {
 
-        String name  = names.get(i).getText().trim();
-        if (name.isEmpty()) continue; // <<< prevents the blank lines
+            String name  = names.get(i).getText().trim();
+            if (name.isEmpty()) continue; // <<< prevents the blank lines
 
-        String age   = (i < ages.size())   ? ages.get(i).getText().trim()   : "";
-        String price = (i < prices.size()) ? prices.get(i).getText().trim() : "";
+            String age   = (i < ages.size())   ? ages.get(i).getText().trim()   : "";
+            String price = (i < prices.size()) ? prices.get(i).getText().trim() : "";
 
-        System.out.println(name + " | " + (age.isEmpty() ? "N/A" : age) + " | " + (price.isEmpty() ? "N/A" : price));
-        arrowBtn.click();
+            System.out.println(name + " | " + (age.isEmpty() ? "N/A" : age) + " | " + (price.isEmpty() ? "N/A" : price));
+            arrowBtn.click();
+        }
     }
-}
 
 
 
