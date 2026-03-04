@@ -1,5 +1,7 @@
 package pageobjects;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +14,7 @@ public class VideoConsultPage {
     private final CommonCode wait;
     private final ScreenshotUtil ss;
 
-    @FindBy (xpath ="//div[text()='Skip the travel!']" )
+    @FindBy (xpath ="//button[@class=\"btn btn-primary btn_small pos-abs\"]" )
     private WebElement bookVideoConsult;
 
     @FindBy(xpath = "(//a[@class=\"link primary-button cta\"])[1]")
@@ -21,19 +23,27 @@ public class VideoConsultPage {
     @FindBy (xpath = "//textarea[@name=\"detailedDescription\"]")
     private WebElement symptomField;
 
+    @FindBy (xpath = "(//label[@class=\"tag-label ng-binding\"])[2]")
+    private WebElement specialityLocator;
+
     @FindBy (xpath = "//input[@type=\"tel\"]")
     private WebElement mobileNoLocator;
 
-    @FindBy (xpath = "//label[@class=\"tag-label ng-binding\"] ")
-    private WebElement specialityLocator;
-
     @FindBy (xpath = "//button[@class=\"btn-blue continue-btn\"]")
     private WebElement continueBtn;
+
+//    @FindBy (xpath = "(//*[contains(normalize-space(.), 'We have sent you an OTP on')])[13]")
+    @FindBy(xpath = "//p[@id=\"otpSentMsg\"]")
+    private WebElement otpMsg;
+
+    @FindBy (xpath = "//iframe[@id='login-iframe-form']")
+    private WebElement frame;
 
     public VideoConsultPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new CommonCode(driver, 20);
         PageFactory.initElements(driver, this);
+        this.ss = new ScreenshotUtil();
     }
     public void navigateToVideoConsultPage() {
         bookVideoConsult.click();
@@ -41,6 +51,25 @@ public class VideoConsultPage {
     public void consultNowBtnClick(){
         consultBtn.click();
     }
+    public void sendDetailsToForm(String speciality, String number){
+        WebElement sendName = wait.visible(symptomField);
+        sendName.sendKeys(speciality);
+        WebElement sendPhNum = wait.visible(mobileNoLocator);
+        sendPhNum.sendKeys(number);
 
+    }
+    public void specialityLocatorClick(){
+        wait.clickable(specialityLocator).click();
+
+    }
+    public void continueBtnClick(){
+        continueBtn.click();
+    }
+    public String getOtpMsg(){
+        wait.visible(frame);
+        driver.switchTo().frame(frame);
+        return wait.visible(otpMsg).getText();
+
+    }
 
 }
