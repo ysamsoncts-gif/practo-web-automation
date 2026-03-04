@@ -20,6 +20,5 @@ public class TC_20_AppointmentFormFieldsValidation extends BaseTest {
         Assert.assertTrue(sp.isContactNumberVisible(),"Contact number field not visible");
         Assert.assertTrue(sp.isBookAppointmentButtonVisible(),"Book appointment button not visible");
         Log.info("All test Fields Present");
-
     }
 }

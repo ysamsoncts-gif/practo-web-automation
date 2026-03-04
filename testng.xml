@@ -5,6 +5,7 @@
     </listeners>
     <test name="Test">
         <classes>
+
             <class name="testcases.TC_01_HomePageElementsValidation"/>
             <class name="testcases.TC_02_HomePageHospitalListValidation"/>
             <class name="testcases.TC_03_HomePageDoctorListValidation"/>
@@ -13,12 +14,15 @@
             <class name="testcases.TC_06_FindDoctorsPagePhoneErrorMessageValidation"/>
             <class name="testcases.TC_07_DiagnosticPageTitleValidation"/>
             <class name="testcases.TC_08_DiagnosticPageTopCitiesValidation"/>
-            <class name="testcases.TC_09_DiagnosticPageSearchboxValidation"/>
+<!--            <class name="testcases.TC_09_DiagnosticPageSearchboxValidation"/>-->
+            <class name="testcases.TC_10_DiagnosticPageAddToCart"/>
+            <class name="testcases.TC_11_DiagnosticPageFormValidation"/>
             <class name="testcases.TC_13_NavigateToWellnessPage"/>
             <class name="testcases.TC_14_DemoFormInvalidData"/>
             <class name="testcases.TC_15_DemoFromValidData"/>
-            <class name="testcases.TC_16_ListAllServices"/>
-            <class name="testcases.TC_17_NavigateToMedicinePage"/>
+            <class name ="testcases.TC_16_ListAllServices"/>
+            <class name ="testcases.TC_17_NavigateToMedicinePage"/>
+            <class name ="testcases.TC_18_AddingMedicineToCart"/>
             <class name="testcases.TC_19_NavigateToSurgeriesPage"/>
             <class name="testcases.TC_20_AppointmentFormFieldsValidation"/>
             <class name="testcases.TC_21_AppointmentFormErrorMsgValidation"/>
@@ -26,6 +30,7 @@
             <class name="testcases.TC_23_AppointmentFormSubmitWithValidData"/>
             <class name="testcases.TC_24_PopularSurgeriesListStoringAndValidation"/>
             <class name="testcases.TC_25_ValidateDepartments"/>
+            <class name ="testcases.TC_26_ValidatingSupportMails"/>
         </classes>
     </test>
 </suite>

@@ -12,11 +12,9 @@ public class TC_04_HomePageLoginFormValidation extends BaseTest {
     @Test
     public void verifyForm(){
         HomePage home = new HomePage(driver);
-
         home.navigateToLoginPage();
         home.sendDataToInputBox("797776969","demoPassword");
         home.clickLoginButton();
-
         Log.info("Test case 04 started:");
         Log.info("Validating login form on home page");
         Log.info("Invalid email/mobile input error message is displayed :"+home.validatePhoneEmailErrorMessage());

@@ -12,9 +12,7 @@ import java.util.List;
 public class TC_09_DiagnosticPageSearchboxValidation extends BaseTest {
     public void verifySearchBox() {
         DiagnosticPage diagnostic = new DiagnosticPage(driver);
-
         diagnostic.navigateToDiagnosticPage();
-
         diagnostic.searchBox("Pune");
         diagnostic.chooseCity("Pune");
         diagnostic.clickScroll();

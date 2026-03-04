@@ -16,7 +16,6 @@ public class TC_22_AppointmentFormSubmitWithInvalidData extends BaseTest {
         sp.navigateToSurgeriesPage();
         Log.info("Starting test case: SubmitFormWithInvalidData");
         String filePath = Paths.get("src/test/resources/testData/AllDetails.xlsx").toAbsolutePath().toString();
-
         Map<String, String> kv = ExcelUtils.readKeyValueSheet(filePath, "AppointmentFormInvalidData", false);
         String name = kv.getOrDefault("Name", "").trim();
         String contact = kv.getOrDefault("ContactNumber", "").trim();
