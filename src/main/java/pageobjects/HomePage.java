@@ -3,11 +3,11 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import utilities.ExcelUtils;
 import utilities.ScreenshotUtil;
 import utilities.CommonCode;
-
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,58 +17,94 @@ public class HomePage {
     private final CommonCode wait;
     private final ScreenshotUtil ss;
 
-    public By practoLogoLocator = By.xpath("(//i[@class='practo_logo_new'])[3]");
+    @FindBy (xpath = "(//i[@class='practo_logo_new'])[3]" )
+    private WebElement practoLogoLocator;
 
-    public By searchBarLocator = By.xpath("//input[@placeholder='Search doctors, clinics, hospitals, etc.']");
+    private By cardLinkLocator = By.xpath("//a[@class='card-link']");
+    private By tabLinkLocator = By.xpath("//div[@class='product-tab__title']");
 
-    public By hospitalOptionLocator = By.xpath("(//div[contains(text(),\"Hospital\")])[4]");
-    public By doctorOptionLocator = By.xpath("(//div[starts-with(text(),'Doctor')])[1]");
+    @FindBy (xpath = "//input[@placeholder='Search doctors, clinics, hospitals, etc.']")
+    private WebElement searchBarLocator;
 
-    public By locationSearchBarLocator = By.xpath("//input[@placeholder='Search location']");
+    @FindBy (xpath = "(//div[contains(text(),\"Hospital\")])[4]")
+    private WebElement hospitalOptionLocator;
+    @FindBy (xpath = "(//div[starts-with(text(),'Doctor')])[1]")
+    private  WebElement doctorOptionLocator;
 
-    public By BangaloreOptionLocator = By.xpath("(//div[contains(text(),\"Bangalore\")])");
-    public By JPNagarOptionLocator = By.xpath("(//div[@data-qa-id='omni-suggestion-main'])[1]");
+    @FindBy (xpath = "//input[@placeholder='Search location']")
+    private WebElement locationSearchBarLocator;
 
-    public By resultHospitalLocationLocator = By.xpath("//span[contains(text(),\"JP Nagar\" )]");
+    @FindBy (xpath = "(//div[contains(text(),\"Bangalore\")])")
+    private WebElement bangaloreOptionLocator;
+    @FindBy (xpath = "(//div[@data-qa-id='omni-suggestion-main'])[1]")
+    private  WebElement jpNagarOptionLocator;
+
+    @FindBy (xpath ="//span[contains(text(),\"JP Nagar\" )]" )
+    private WebElement resultHospitalLocationLocator;
     public By resultHospitalNameLocator = By.xpath("//h2[@class='line-1']");
-    public By resultHospitalLastNameLocator = By.xpath("(//h2[@class='line-1'])[10]");
+    @FindBy (xpath ="(//h2[@class='line-1'])[10]" )
+    private WebElement resultHospitalLastNameLocator;
 
-    public By genderTabLocator= By.xpath("//div[@data-qa-id='doctor_gender_section']");
-    public By maleDoctorTabLocator = By.xpath("//span[text()='Male Doctor']");
+    @FindBy (xpath = "//div[@data-qa-id='doctor_gender_section']")
+    private WebElement genderTabLocator;
+    @FindBy (xpath = "//span[text()='Male Doctor']")
+    private WebElement maleDoctorTabLocator;
 
-    public By doctorReviewTabLocator = By.xpath("//div[@data-qa-id='doctor_review_count_section']");
-    public By patientFeedbackTabLocator = By.xpath("(//li[@role='option'])[4]");
+    @FindBy (xpath ="//div[@data-qa-id='doctor_review_count_section']")
+    private WebElement doctorReviewTabLocator;
+    @FindBy (xpath ="(//li[@role='option'])[4]")
+    private WebElement patientFeedbackTabLocator;
+    @FindBy (xpath = "//div[@data-qa-id='years_of_experience_section']")
+    private WebElement experienceTabLocator;
+    @FindBy (xpath = "//span[text()='10+ Years of experience']")
+    private WebElement yearsOfExperienceLocator;
 
-    public By experienceTabLocator = By.xpath("//div[@data-qa-id='years_of_experience_section']");
-    public By yearsOfExperienceLocator = By.xpath("//span[text()='10+ Years of experience']");
+    @FindBy (xpath = "//span[@data-qa-id='all_filters']" )
+    private WebElement allFiltersTabLocator;
+    @FindBy (xpath = "//div[@data-qa-id='Apollo_Clinic_checkbox']")
+    private  WebElement apolloCheckBoxLocator;
+    @FindBy (xpath = "//span[@data-qa-id='Above ₹500_label']")
+    private WebElement feesRadioLocator;
+    @FindBy (xpath = "//span[@data-qa-id='Available Tomorrow_label']" )
+    private WebElement availabilityCheckBoxLocator;
+    @FindBy (xpath = "//div[@data-qa-id='sort_by_section']" )
+    private WebElement sortByTabLocator;
 
-    public By allFiltersTabLocator = By.xpath("//span[@data-qa-id='all_filters']");
-    public By apolloCheckBoxLocator = By.xpath("//div[@data-qa-id='Apollo_Clinic_checkbox']");
-    public By feesRadioLocator = By.xpath("//span[@data-qa-id='Above ₹500_label']");
-    public By availabilityCheckBoxLocator = By.xpath("//span[@data-qa-id='Available Tomorrow_label']");
-
-    public By sortByTabLocator = By.xpath("//div[@data-qa-id='sort_by_section']");
-    public By experienceFilterLocator = By.xpath("//li[@data-qa-id='experience_years']");
+    @FindBy (xpath = "//li[@data-qa-id='experience_years']" )
+    private WebElement experienceFilterLocator;
 
     public By resultDoctorNameLocator = By.xpath("//h2[@data-qa-id='doctor_name']");
-    public By resultDoctorLocationLocator = By.xpath("//span[@data-qa-id='practice_city']");
-    public By resultDoctorLastNameLocator = By.xpath("(//h2[@data-qa-id='doctor_name'])[10]");
+    @FindBy (xpath = "//span[@data-qa-id='practice_city']")
+    private WebElement resultDoctorLocationLocator;
+    @FindBy (xpath = "(//h2[@data-qa-id='doctor_name'])[10]")
+    private WebElement resultDoctorLastNameLocator;
 
-    public By loginSignupButtonLocator = By.xpath("//a[text()='Login / Signup']");
+    @FindBy (xpath = "//a[text()='Login / Signup']")
+    private WebElement loginSignupButtonLocator;
 
-    public By mobileNoEmailInputLocator = By.xpath("//input[@id='username']");
-    public By passwordInputLocator = By.xpath("//input[@id='password']");
+    @FindBy (xpath = "//input[@id='username']")
+    private WebElement mobileNoEmailInputLocator;
+    @FindBy (xpath = "//input[@id='password']")
+    private WebElement passwordInputLocator;
 
-    public By loginButtonLocator = By.xpath("//button[@id='login']");
+    @FindBy (xpath = "//button[@id='login']")
+    private WebElement loginButtonLocator;
 
-    public By userNameErrorLocator = By.xpath("//span[@id='usernameErrorBlock']");
-    public By passwordErrorLocator = By.xpath("//span[@id='passwordErrorBlock']");
+    @FindBy (xpath = "//span[@id='usernameErrorBlock']")
+    private WebElement userNameErrorLocator;
 
-    public By signupButtonLocator = By.xpath("//a[@id='registerLink']");
+    @FindBy (xpath = "//span[@id='passwordErrorBlock']")
+    private WebElement passwordErrorLocator;
 
-    public By nameBlockErrorLocator = By.xpath("//span[@id='nameErrorBlock']");
-    public By mobileBlockErrorLocator = By.xpath("//span[@id='mobileErrorBlock']");
-    public By passwordBlockErrorLocator = By.xpath("//span[@id='passwordErrorBlock']");
+    @FindBy (xpath = "//a[@id='registerLink']")
+    private WebElement signupButtonLocator;
+
+    @FindBy (xpath = "//span[@id='nameErrorBlock']")
+    private WebElement nameBlockErrorLocator;
+    @FindBy (xpath = "//span[@id='mobileErrorBlock']")
+    private WebElement mobileBlockErrorLocator;
+    @FindBy (xpath = "//span[@id='passwordErrorBlock']")
+    private WebElement passwordBlockErrorLocator;
 
     public By sendOtpButtonLocator = By.xpath("//button[@id='EmailRegister']");
 
@@ -76,6 +112,7 @@ public class HomePage {
         this.driver = driver;
         this.wait = new CommonCode(driver, 20);
         this.ss = new ScreenshotUtil();
+        PageFactory.initElements(driver, this);
     }
 
     public String getPageTitle() {
@@ -83,50 +120,55 @@ public class HomePage {
     }
 
     public boolean isPageLogoDisplayed(){
-        WebElement logo = wait.visible(practoLogoLocator);
-        return logo.isDisplayed();
+        wait.visible(practoLogoLocator);
+        return practoLogoLocator.isDisplayed();
+    }
+
+    public int numberOfCardLinkPresent(){
+        List <WebElement> cardLinks = driver.findElements(cardLinkLocator);
+        return cardLinks.size();
+    }
+
+    public int numberOfLinkTabPresent(){
+        List<WebElement> tabLinks = driver.findElements(tabLinkLocator);
+        return tabLinks.size();
     }
 
     public void selectSearchHospitalClinic(String hospital) {
-        WebElement sendHospital = driver.findElement(searchBarLocator);
-        sendHospital.click();
-        sendHospital.sendKeys(hospital);
+        searchBarLocator.click();
+        searchBarLocator.sendKeys(hospital);
         wait.clickable(hospitalOptionLocator).click();
     }
 
     public void selectSearchDoctor(String doctor) {
-        WebElement sendHospital = driver.findElement(searchBarLocator);
-        sendHospital.click();
-        sendHospital.sendKeys(doctor);
+        searchBarLocator.click();
+        searchBarLocator.sendKeys(doctor);
         wait.clickable(doctorOptionLocator).click();
     }
 
     public void selectSearchLocation(String location)  {
-        WebElement sendSearchLocation = driver.findElement(locationSearchBarLocator);
-        sendSearchLocation.clear();
-        sendSearchLocation.click();
-        sendSearchLocation.sendKeys(location);
-        wait.clickable(BangaloreOptionLocator).click();
+        locationSearchBarLocator.clear();
+        locationSearchBarLocator.click();
+        locationSearchBarLocator.sendKeys(location);
+        wait.clickable(bangaloreOptionLocator).click();
     }
 
     public void selectSubSearchLocation(String location)  {
-        WebElement sendSubLocation = driver.findElement(locationSearchBarLocator);
-        sendSubLocation.clear();
-        sendSubLocation.click();
-        sendSubLocation.sendKeys(location);
-        wait.clickable(JPNagarOptionLocator).click();
-        wait.present(resultHospitalLocationLocator);
+        locationSearchBarLocator.clear();
+        locationSearchBarLocator.click();
+        locationSearchBarLocator.sendKeys(location);
+        wait.clickable(jpNagarOptionLocator).click();
+        wait.present(By.xpath("//span[contains(text(),\"JP Nagar\" )]" ));
     }
 
     public boolean verifyHospitalName() {
-        wait.present(resultHospitalLocationLocator);
-        WebElement hospitalNameLocation = driver.findElement(resultHospitalLocationLocator);
-        return hospitalNameLocation.getText().startsWith("JP Nagar");
+        wait.present(By.xpath("//span[contains(text(),\"JP Nagar\" )]" ));
+        return resultHospitalLocationLocator.getText().startsWith("JP Nagar");
     }
 
     public void storeHospitalName() {
         List<WebElement> hospitalNames = driver.findElements(resultHospitalNameLocator);
-        wait.scrollIntoView(driver.findElement(resultHospitalLastNameLocator));
+        wait.scrollIntoView(resultHospitalLastNameLocator);
         for (WebElement names : hospitalNames) {
             System.out.println(names.getText());
         }
@@ -155,63 +197,53 @@ public class HomePage {
     }
 
     public void selectFilterDoctorMale(){
-        WebElement clickMaleDoctor = driver.findElement(maleDoctorTabLocator);
-        clickMaleDoctor.click();
+        maleDoctorTabLocator.click();
     }
 
     public void selectDoctorReview(){
-        WebElement clickReviewTab = wait.clickable(doctorReviewTabLocator);
-        clickReviewTab.click();
+         wait.clickable(doctorReviewTabLocator);
+         doctorReviewTabLocator.click();
     }
 
     public void selectFilterPatientFeedback(){
-        WebElement clickPatientStories = wait.clickable(patientFeedbackTabLocator);
-        clickPatientStories.click();
+        wait.clickable(patientFeedbackTabLocator).click();
     }
 
     public void selectExperience(){
-        WebElement clickExperience = wait.clickable(experienceTabLocator);
-        clickExperience.click();
+         wait.clickable(experienceTabLocator).click();
     }
 
     public void selectFilter10Years(){
-        WebElement click10Years = wait.clickable(yearsOfExperienceLocator);
-        click10Years.click();
+        wait.clickable(yearsOfExperienceLocator).click();
     }
 
     public void selectALlFilters(){
-        WebElement clickAllFilters = wait.clickable(allFiltersTabLocator);
-        clickAllFilters.click();
+         wait.clickable(allFiltersTabLocator).click();
     }
 
     public void selectApolloCheckBox() {
-        WebElement clickApolloCheckBox = wait.clickable(apolloCheckBoxLocator);
-        clickApolloCheckBox.click();
+        wait.clickable(apolloCheckBoxLocator).click();
     }
 
     public void selectFeesRadio() {
-        WebElement clickFeesRadio =wait.clickable(feesRadioLocator);
-        clickFeesRadio.click();
+       wait.clickable(feesRadioLocator).click();
     }
 
     public void selectAvailabilityCheckBox() {
-        WebElement clickAvailabilityCheckBox = wait.clickable(availabilityCheckBoxLocator);
-        clickAvailabilityCheckBox.click();
+         wait.clickable(availabilityCheckBoxLocator).click();
     }
 
     public void selectSortByFilter(){
-        WebElement clickSortBy = wait.clickable(sortByTabLocator);
-        clickSortBy.click();
+        wait.clickable(sortByTabLocator).click();
     }
 
     public void selectExperienceFilter(){
-        WebElement clickExperience = wait.clickable(experienceFilterLocator);
-        clickExperience.click();
+        wait.clickable(experienceFilterLocator).click();
     }
 
     public void storeDoctorName(){
         List <WebElement> doctorNames = driver.findElements(resultDoctorNameLocator);
-        wait.scrollIntoView(driver.findElement(resultDoctorLastNameLocator));
+        wait.scrollIntoView(resultDoctorLastNameLocator);
         for(WebElement names:doctorNames){
             System.out.println(names.getText());
         }
@@ -235,32 +267,26 @@ public class HomePage {
     }
 
     public boolean verifyDoctorLocation(){
-            wait.present(resultDoctorLocationLocator);
-            WebElement doctorNameLocation = driver.findElement(resultDoctorLocationLocator);
-            return doctorNameLocation.getText().startsWith("Bangalore");
+            wait.present(By.xpath("//span[@data-qa-id='practice_city']"));
+            return resultDoctorLocationLocator.getText().startsWith("Bangalore");
         }
 
     public void navigateToLoginPage(){
-        WebElement clickLoginSignupBtn = wait.clickable(loginSignupButtonLocator);
-        clickLoginSignupBtn.click();
+        wait.clickable(loginSignupButtonLocator).click();
     }
 
     public void sendDataToInputBox(String phNumber , String password){
-        WebElement sendMobileNumber = wait.visible(mobileNoEmailInputLocator);
-        sendMobileNumber.sendKeys(phNumber);
-        WebElement sendPassword = wait.visible(passwordInputLocator);
-        sendPassword.sendKeys(password);
+        wait.visible(mobileNoEmailInputLocator).sendKeys(phNumber);
+        wait.visible(passwordInputLocator).sendKeys(password);
     }
 
     public void clickLoginButton(){
-        WebElement clickLoginBtn = driver.findElement(loginButtonLocator);
-        clickLoginBtn.click();
+        loginButtonLocator.click();
         ss.takeScreenshot(driver,"Login_Form_Validation");
     }
 
     public String validatePhoneEmailErrorMessage(){
-        WebElement errorMessage = wait.visible(userNameErrorLocator);
-        return errorMessage.getText();
+        return wait.visible(userNameErrorLocator).getText();
     }
 
     public void sendDataToInputBoxB(String phNumber , String password){
@@ -272,13 +298,11 @@ public class HomePage {
     }
 
     public String validatePasswordErrorMessage(){
-        WebElement passwordErrorMessage = wait.visible(passwordErrorLocator);
-        return  passwordErrorMessage.getText();
+       return wait.visible(passwordErrorLocator).getText();
     }
 
     public void navigateToSignupPage(){
-        WebElement clickSignupBtn = wait.clickable(signupButtonLocator);
-        clickSignupBtn.click();
+        wait.clickable(signupButtonLocator).click();
     }
 
     public void clickSendOtpButton(){
@@ -288,17 +312,14 @@ public class HomePage {
     }
 
     public String validateNameErrorMessage(){
-        WebElement nameError = wait.visible(nameBlockErrorLocator);
-        return nameError.getText();
+        return wait.visible(nameBlockErrorLocator).getText();
     }
 
     public String validatePhoneErrorMessage() {
-        WebElement phoneError = driver.findElement(mobileBlockErrorLocator);
-        return phoneError.getText();
+        return driver.findElement(By.xpath("//span[@id='mobileErrorBlock']")).getText();
     }
 
     public String validatePasswordMessage(){
-        WebElement passwordError = driver.findElement(passwordBlockErrorLocator);
-        return passwordError.getText();
+        return passwordBlockErrorLocator.getText();
     }
 }
