@@ -2,9 +2,12 @@
 <suite name="UI Suite">
     <test name="PractoWebPageAutomation">
         <classes>
-            <class name="testcases.TC_07_VerifyDiagnosticPage"/>
-            <class name="testcases.TC_08_VerifyTopCitiesPrintedAndStored"/>
-            <class name="testcases.TC_09_VerifySearchbox"/>
+            <class name="testcases.TC_07_DiagnosticPageTitleValidation"/>
+            <class name="testcases.TC_08_DiagnosticPageTopCitiesValidation"/>
+            <class name="testcases.TC_09_DiagnosticPageSearchboxValidation"/>
+            <class name="testcases.TC_10_DiagnosticPageAddToCart"/>
+            <class name="testcases.TC_11_DiagnosticPageFormValidation"/>
+
         </classes>
     </test>
 </suite>
