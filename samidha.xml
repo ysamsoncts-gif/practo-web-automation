@@ -1,14 +1,17 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="UI Suite">
+    <listeners>
+        <listener class-name="utilities.ExtentReportManager"/>
+    </listeners>
     <test name="tripAdvicerAutomation">
         <classes>
             <class name="testcases.TC_13_NavigateToWellnessPage"/>
             <class name="testcases.TC_14_DemoFormInvalidData"/>
             <class name="testcases.TC_15_DemoFromValidData"/>
             <class name ="testcases.TC_16_ListAllServices"/>
-            <class name = "testcases.TC_17_NavigateToMedicinePage"/>
-            <class name = "testcases.TC_18_AddingMedicineToCart"/>
-            <class name = "testcases.TC_26_ValidatingSupportMails"/>
+            <class name ="testcases.TC_17_NavigateToMedicinePage"/>
+            <class name ="testcases.TC_18_AddingMedicineToCart"/>
+            <class name ="testcases.TC_26_ValidatingSupportMails"/>
         </classes>
     </test>
 </suite>

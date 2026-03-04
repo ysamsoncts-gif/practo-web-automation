@@ -35,9 +35,7 @@ public class TC_15_DemoFromValidData extends BaseTest {
         String emailId = kv.getOrDefault("EmailId","").trim();
         cp.validatingData(name,organizationName,contact,emailId,3,2);
         Log.info("Data retrieved from Excel sheet");
-
-      //  cp.validatingData("Samidha","cts","9898989898","cts@gmail.com",3,2);
-        Assert.assertTrue(cp.submit.isEnabled(), "Submit button should be enabled.");
+        Assert.assertTrue(cp.isSubmitBtnEnable(), "Submit button should be enabled.");
         Log.info("Ending test case: DemoFormValidData");
     }
 }

@@ -10,7 +10,7 @@ public class TC_21_AppointmentFormErrorMsgValidation extends BaseTest {
 
 
     @Test
-    public void test_MandatoryFieldErrorsOnEmptySubmit() {
+    public void VerifyErrorFieldsPresentOnEmptySubmit() {
         SurgeriesPage sp = new SurgeriesPage(driver);
         sp.navigateToSurgeriesPage();
         Log.info("Starting test case: test_MandatoryFieldErrorsOnEmptySubmit");
