@@ -1,129 +1,160 @@
 package pageobjects;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import utilities.ExcelUtils;
 import utilities.CommonCode;
 import utilities.ScreenshotUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class SurgeriesPage {
     private final WebDriver driver;
-    private final CommonCode wait;
+    private final CommonCode cc;
     private final ScreenshotUtil Ss;
 
-    private final By desktopSurgeriesLocator = By.xpath("//a[@title=\"surgery\" and @event=\"Nav Drawer:Interacted:Surgery\"]");
-    private final By formCityDropdownLocator = By.xpath("//div[@data-qa-id=\"city-selector-container\"] ");
-    private final By formCityOptionsLocator = By.xpath("(//div[@data-qa-id=\"city-name\"]/h1)[4]");
-    private final By formAilmentDropdownLocator = By.xpath("//div[@data-qa-id=\"ailment-selector-container\"]");
-    private final By formAilmentOptionsLocator = By.xpath("(//h1[contains(text(),\"ACL Repair\")])[2]");
-    private final By formAilmentDropdownErrorMsgLocator = By.xpath("//div[@data-qa-id=\"ailment-selector-container\"]/following::div[1]");
-    private final By formNameLocator = By.xpath("//input[@id=\"Name-Gen-Lead-Form\"]");
-    private final By formNameErrorMsgLocator = By.xpath("//input[@id=\"Name-Gen-Lead-Form\"]/parent::div/following::div[1]");
-    private final By formContactNumberLocator = By.xpath("//input[@id='Phone-Gen-Lead-Form']");
-    private final By formContactNumberErrorMsgLocator = By.xpath("//input[@id='Phone-Gen-Lead-Form']/parent::div/following::div[1]");
-    private final By formBookAppointmentButtonLocator = By.cssSelector("[data-qa-id='book-appointment-cta']");
-    private final By formOtpSuccessMsgLocator = By.xpath("//p[@id=\"otpSentMsg\"]");
-    private final By PopularSurgeriesListLocator = By.xpath("//h1[@data-qa-id=\"surgical-solution-sub-header\"]/../descendant::p");
-    private final By OurDepartmentLocator = By.xpath("//div[@data-qa-id=\"our-department-wrapper\"]/descendant::h1");
+    @FindBy(xpath = "//a[@title='surgery' and @event='Nav Drawer:Interacted:Surgery']")
+    private WebElement desktopSurgeriesNavbarLink;
+    @FindBy(xpath = "//div[@data-qa-id='city-selector-container']")
+    private WebElement formCityDropdownArrow;
+    @FindBy(xpath = "(//div[@data-qa-id='city-name']/h1)[4]")
+    private WebElement formCityOptionRadiobutton;
+    @FindBy(xpath = "//div[@data-qa-id='ailment-selector-container']")
+    private WebElement formAilmentDropdownArrow;
+    @FindBy(xpath = "(//h1[contains(text(),'ACL Repair')])[2]")
+    private WebElement formAilmentOptionRadioButton;
+    @FindBy(xpath = "//div[@data-qa-id='ailment-selector-container']/following::div[1]")
+    private WebElement formAilmentBoxErrorMsg;
+    @FindBy(xpath = "//input[@id='Name-Gen-Lead-Form']")
+    private WebElement formNameInputBox;
+    @FindBy(xpath = "//input[@id='Name-Gen-Lead-Form']/parent::div/following::div[1]")
+    private WebElement formNameErrorMsg;
+    @FindBy(xpath = "//input[@id='Phone-Gen-Lead-Form']")
+    private WebElement formContactNumberInputBox;
+    @FindBy(xpath = "//input[@id='Phone-Gen-Lead-Form']/parent::div/following::div[1]")
+    private WebElement formContactNumberErrorMsg;
+    @FindBy(css = "[data-qa-id='book-appointment-cta']")
+    private WebElement formBookAppointmentButton;
+    private final By otpIframe = By.xpath("//iframe");
+    @FindBy(xpath = "//p[@id='otpSentMsg']")
+    private WebElement formOtpSuccessMsg;
+    @FindBy(xpath = "//h1[@data-qa-id='surgical-solution-sub-header']/../descendant::p")
+    private List<WebElement> popularSurgeriesItems;
+    @FindBy(xpath = "//div[@data-qa-id='our-department-wrapper']/descendant::h1")
+    private List<WebElement> ourDepartmentItems;
+    @FindBy(xpath = "(//h1)[1]")
+    private WebElement pageHeaderText;
+    @FindBy(xpath = "//img[@alt='PCS Logo']")
+    private WebElement pageLogo;
 
     public SurgeriesPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new CommonCode(driver, 20);
-        this.Ss= new ScreenshotUtil();
+        this.cc = new CommonCode(driver, 20);
+        this.Ss = new ScreenshotUtil();
+        PageFactory.initElements(driver, this);
     }
     public void navigateToSurgeriesPage() {
-        WebElement link = driver.findElement(desktopSurgeriesLocator);
         try {
-            link.click();
+            cc.clickable(desktopSurgeriesNavbarLink).click();
         } catch (WebDriverException e) {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", link);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", desktopSurgeriesNavbarLink);
         }
-    }    //Form Methods
-    public boolean isElementDisplayed(By locator) {
-        return driver.findElement(locator).isDisplayed();
     }
-    public boolean isFormCityDropdownVisible() {
-        return isElementDisplayed(formCityDropdownLocator);
+    public boolean isformCityDropdownArrowVisible() {
+        return cc.isElementDisplayed(formCityDropdownArrow);
     }
     public boolean isAilmentDropdownVisible() {
-        return isElementDisplayed(formAilmentDropdownLocator);
+        return cc.isElementDisplayed(formAilmentDropdownArrow);
     }
     public boolean isNameFieldVisible() {
-        return isElementDisplayed(formNameLocator);
+        return cc.isElementDisplayed(formNameInputBox);
     }
     public boolean isContactNumberVisible() {
-        return isElementDisplayed(formContactNumberLocator);
+        return cc.isElementDisplayed(formContactNumberInputBox);
     }
     public boolean isBookAppointmentButtonVisible() {
-        WebElement bookbtn = driver.findElement(formBookAppointmentButtonLocator);
-        System.out.println(bookbtn.isSelected());
-        System.out.println(bookbtn.isDisplayed());
-        System.out.println(bookbtn.isEnabled());
-        return isElementDisplayed(formBookAppointmentButtonLocator);
+        return cc.isElementDisplayed(formBookAppointmentButton);
     }
     public void clickBookButton() {
-        driver.findElement(formBookAppointmentButtonLocator).click();
+        cc.clickable(formBookAppointmentButton).click();
     }
     public String getNameError() {
-        return driver.findElement(formNameErrorMsgLocator).getText();
+        return cc.getText(formNameErrorMsg);
     }
     public String getContactError() {
-        return driver.findElement(formContactNumberErrorMsgLocator).getText();
+        return cc.getText(formContactNumberErrorMsg);
     }
     public String getAilmentError() {
-        return driver.findElement(formAilmentDropdownErrorMsgLocator).getText();
+        return cc.getText(formAilmentBoxErrorMsg);
     }
-    public void fillTheForm(String Name, String ContactNumber) {
-        wait.scrollIntoView(driver.findElement(formBookAppointmentButtonLocator));
-        driver.findElement(formCityDropdownLocator).click();
-        driver.findElement(formCityOptionsLocator).click();
-        wait.clickable(formAilmentDropdownLocator).click();
-        wait.clickable(formAilmentOptionsLocator).click();
-        wait.visible(formNameLocator).sendKeys(Name);
-        driver.findElement(formContactNumberLocator).sendKeys(ContactNumber);
+    public String getHeadingText(){
+        return cc.getText(pageHeaderText);
+    }
+    public boolean isLogoDisplayed(){
+        System.out.println("logo displayed "+pageLogo.isDisplayed());
+//        System.out.println("logo enabled "+pageLogo.isEnabled());
+        return cc.isElementDisplayed(pageLogo);
+    }
+    public String getLogoAttribute(String attribute){
+        return pageLogo.getAttribute("alt");
+    };
+    public void fillTheForm(String name, String contactNumber) {
+        cc.scrollIntoView(formBookAppointmentButton);
+        cc.clickable(formCityDropdownArrow).click();
+        cc.clickable(formCityOptionRadiobutton).click();
+        cc.clickable(formAilmentDropdownArrow).click();
+        cc.clickable(formAilmentOptionRadioButton).click();
+        cc.visible(formNameInputBox).clear();
+        formNameInputBox.sendKeys(name);
+        cc.visible(formContactNumberInputBox).clear();
+        formContactNumberInputBox.sendKeys(contactNumber);
     }
     public String submitForm() {
-
-        driver.findElement(formBookAppointmentButtonLocator).click();
-        driver.switchTo().frame(wait.visible(By.xpath("//iframe")));
-        WebElement msg = driver.findElement(formOtpSuccessMsgLocator);
-        Ss.takeScreenshot(driver,"SubmitFormOtpSuccessMsg");
-        return msg.getText();
+        cc.clickable(formBookAppointmentButton).click();
+        WebElement iframe = cc.visible(otpIframe);
+        driver.switchTo().frame(iframe);
+        WebElement msg = cc.visible(formOtpSuccessMsg);
+        Ss.takeScreenshot(driver, "SubmitFormOtpSuccessMsg");
+        String text = msg.getText();
+        driver.switchTo().defaultContent();
+        return text;
     }
     public List<WebElement> surgeriesList() {
-        wait.scrollIntoView(driver.findElement(PopularSurgeriesListLocator));
-        List<WebElement> surgerisList = driver.findElements(PopularSurgeriesListLocator);
-        Ss.takeScreenshot(driver,"SurgeriesList");
-        return surgerisList;
+        if (!popularSurgeriesItems.isEmpty()) {
+            cc.scrollIntoView(popularSurgeriesItems.get(0));
+        }
+        Ss.takeScreenshot(driver, "SurgeriesList");
+        return popularSurgeriesItems;
     }
     public List<String> extractSurgeriesList() {
-        List<WebElement> list = driver.findElements(PopularSurgeriesListLocator);
         List<String> rows = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            String name = list.get(i).getText().trim();
+        for (WebElement el : popularSurgeriesItems) {
+            String name = el.getText().trim();
             if (!name.isEmpty()) {
                 rows.add(name);
             }
         }
         return rows;
     }
-    public void saveSurgeriesListToExcelFromList()  {
+    public void saveSurgeriesListToExcelFromList() {
         List<String> rows = extractSurgeriesList();
         ExcelUtils.writeList("Surgeries", "Popular Surgeries offered", rows);
     }
     public List<WebElement> ourDepartmentsList() {
-        wait.scrollIntoView(driver.findElement(OurDepartmentLocator));
-        Ss.takeScreenshot(driver,"DepartmentList");
-        return driver.findElements(OurDepartmentLocator);
+        if (!ourDepartmentItems.isEmpty()) {
+            cc.scrollIntoView(ourDepartmentItems.get(0));
+        }
+        Ss.takeScreenshot(driver, "DepartmentList");
+        return ourDepartmentItems;
     }
     public List<List<String>> extractDepartmentsList() {
-        List<WebElement> list = driver.findElements(OurDepartmentLocator);
         List<List<String>> rows = new ArrayList<>();
-        for (int i = 0; i < list.size(); i += 2) {
-            String name = list.get(i).getText().trim();
-            String count = (i + 1 < list.size()) ? list.get(i + 1).getText().trim() : "";
+        for (int i = 0; i < ourDepartmentItems.size(); i += 2) {
+            String name = ourDepartmentItems.get(i).getText().trim();
+            String count = (i + 1 < ourDepartmentItems.size()) ? ourDepartmentItems.get(i + 1).getText().trim() : "";
             if (!name.isEmpty()) {
                 rows.add(Arrays.asList(name, count));
             }
