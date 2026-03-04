@@ -17,11 +17,10 @@ public class ScreenshotUtil {
             if (!(driver instanceof TakesScreenshot)) {
                 System.out.println("ScreenshotUtil: driver does not support screenshots");
                 return null;}
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String safeBase = (baseName == null || baseName.isBlank())
                     ? "screenshot"
                     : baseName.trim().replaceAll("\\s+", "_");
-            String fileName = safeBase + "_" + timestamp + ".png";
+            String fileName = safeBase + ".png";
             File folder = new File((folderPath == null || folderPath.isBlank()) ? "screenshots" : folderPath.trim());
             if (!folder.exists()) folder.mkdirs();
 

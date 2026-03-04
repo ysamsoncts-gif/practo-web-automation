@@ -9,9 +9,9 @@
 <!--            <class name="testcases.TC_20_AppointmentFormFieldsValidation"/>-->
 <!--            <class name="testcases.TC_21_AppointmentFormErrorMsgValidation"/>-->
 <!--            <class name="testcases.TC_22_AppointmentFormSubmitWithInvalidData"/>-->
-<!--            <class name="testcases.TC_23_AppointmentFormSubmitWithValidData"/>-->
-            <class name="testcases.TC_24_PopularSurgeriesListStoringAndValidation"/>
-            <class name="testcases.TC_25_ValidateDepartments"/>
+            <class name="testcases.TC_23_AppointmentFormSubmitWithValidData"/>
+<!--            <class name="testcases.TC_24_PopularSurgeriesListStoringAndValidation"/>-->
+<!--            <class name="testcases.TC_25_ValidateDepartments"/>-->
         </classes>
     </test>
 </suite>
