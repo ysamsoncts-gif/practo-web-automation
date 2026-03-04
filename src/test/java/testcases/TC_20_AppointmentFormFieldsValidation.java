@@ -10,11 +10,11 @@ public class TC_20_AppointmentFormFieldsValidation extends BaseTest {
 
 
     @Test
-    public void test_FieldsPresent(){
+    public void VerifyMandatoryFieldsPresent(){
         SurgeriesPage sp = new SurgeriesPage(driver);
         Log.info("Starting test case: test_FieldsPresent");
         sp.navigateToSurgeriesPage();
-        Assert.assertTrue(sp.isFormCityDropdownVisible(),"City dropdown not visible");
+        Assert.assertTrue(sp.isformCityDropdownArrowVisible(),"City dropdown not visible");
         Assert.assertTrue(sp.isAilmentDropdownVisible(),"Aliment dropdown not visible");
         Assert.assertTrue(sp.isNameFieldVisible(),"Name field not visible");
         Assert.assertTrue(sp.isContactNumberVisible(),"Contact number field not visible");

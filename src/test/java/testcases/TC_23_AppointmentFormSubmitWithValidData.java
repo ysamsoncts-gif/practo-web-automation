@@ -7,6 +7,7 @@ import pageobjects.SurgeriesPage;
 import utilities.ExcelUtils;
 import utilities.Log;
 
+import java.nio.file.Paths;
 import java.util.Map;
 
 public class TC_23_AppointmentFormSubmitWithValidData extends BaseTest {
@@ -16,10 +17,7 @@ public class TC_23_AppointmentFormSubmitWithValidData extends BaseTest {
         SurgeriesPage sp = new SurgeriesPage(driver);
         sp.navigateToSurgeriesPage();
         Log.info("Starting test case: SubmitFormWithValidDate");
-        String filePath = getClass().getClassLoader()
-                .getResource("testData/AllDetails.xlsx")
-                .getPath();
-        Log.info("Started reading data from excel");
+        String filePath = Paths.get("src/test/resources/testData/AllDetails.xlsx").toAbsolutePath().toString();        Log.info("Started reading data from excel");
         Map<String, String> kv = ExcelUtils.readKeyValueSheet(filePath, "AppointmentFormValidData", false);
         String name = kv.getOrDefault("Name", "").trim();
         String contact = kv.getOrDefault("ContactNumber", "").trim();

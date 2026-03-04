@@ -72,4 +72,17 @@ public class CommonCode {
         }
     }
 
+    public WebElement visible(WebElement locator) {
+        return wait.until(ExpectedConditions.visibilityOf(locator));
+    }
+
+    public String getText(WebElement element)
+    {
+        return element.getText();
+    }
+
+    public boolean isElementDisplayed(WebElement ele){
+            return ele.isDisplayed();
+    };
+
 }

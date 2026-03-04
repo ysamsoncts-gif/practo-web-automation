@@ -13,8 +13,8 @@ public class TC_26_ValidatingSupportMails extends BaseTest {
         Log.info("Starting test case: ValidatingSupportMails");
         CorporatePage cp = new CorporatePage(driver);
         cp.navigateToContactPage();
-        Assert.assertEquals(cp.getSupportMail(),"support@practo.com","Support email is incorrect");
-        Assert.assertEquals(cp.getNodalOfficerMail(),"practo-nodal-officer-team@practo.com","Nodal Officer email is incorrect");
+        Assert.assertEquals(cp.getSupportMailLnk(),"support@practo.com","Support email is incorrect");
+        Assert.assertEquals(cp.getNodalOfficerMailLnk(),"practo-nodal-officer-team@practo.com","Nodal Officer email is incorrect");
         Assert.assertEquals(cp.getgrievanceOfficerMail(),"practo-grievance-officer-team@practo.com","Grievance Officer email is incorrect");
         Log.info("Ending test case: ValidatingSupportMails");
     }

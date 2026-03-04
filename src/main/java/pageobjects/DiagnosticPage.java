@@ -4,10 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import utilities.ExcelUtils;
-import utilities.ScreenshotUtil;
 import utilities.CommonCode;
 
 import java.math.BigDecimal;
@@ -17,12 +13,6 @@ import java.util.List;
 public class    DiagnosticPage {
     private WebDriver driver;
     private final CommonCode wait;
-    private final ScreenshotUtil ss;
-
-
-   // public By bookDiagnosticTab = By.xpath("//span[text()='Book Diagnostic Tests']");
-    @FindBy (xpath = "//span[text()='Book Diagnostic Tests']")
-    private WebElement bookDiagnosticTab;
 
     public By topCities = By.xpath(" //div[@class=\"u-margint--standard o-f-color--primary\"]");
 
@@ -109,8 +99,6 @@ public class    DiagnosticPage {
     public DiagnosticPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new CommonCode(driver, 20);
-        PageFactory.initElements(driver, this);
-        this.ss = new ScreenshotUtil();
     }
 
     public void navigateToDiagnosticPage() {

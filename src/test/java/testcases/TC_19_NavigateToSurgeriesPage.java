@@ -19,7 +19,12 @@ public class TC_19_NavigateToSurgeriesPage extends BaseTest {
                 driver.getCurrentUrl().toLowerCase().contains("care"),
                 "Navigation to Surgeries Failed."
         );
+        sp.isLogoDisplayed();
+        Assert.assertTrue(sp.getHeadingText().contains("Surgeons"),"page heading dont contain Surgeons words");
+        Assert.assertTrue(sp.isLogoDisplayed(),"Logo missing in Surgeries page");
+        System.out.println(sp.getLogoAttribute("alt"));
+        Assert.assertEquals(sp.getLogoAttribute("alt"),"PCS Logo","Incorrect Logo loaded");
+        Assert.assertTrue(driver.getTitle().contains("Surgeries"),"Surgery page Title not matching or not available");
         Log.info("Sucessfully navigated to surgeries page");
     }
-
 }
