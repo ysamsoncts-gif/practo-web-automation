@@ -10,50 +10,103 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiagnosticPage {
+public class    DiagnosticPage {
     private WebDriver driver;
     private final CommonCode wait;
 
-    public By bookDiagnosticTab = By.xpath("//span[text()='Book Diagnostic Tests']");
     public By topCities = By.xpath(" //div[@class=\"u-margint--standard o-f-color--primary\"]");
-    public By citySearchBox = By.xpath("//input[@placeholder=\"Search for city\"]");
-    public By cityOption = By.xpath("(//div[text()='Pune'])[1]");
+
+//    public By citySearchBox = By.xpath("//input[@placeholder=\"Search for city\"]");
+    @FindBy (xpath = "//input[@placeholder=\"Search for city\"]")
+    private WebElement citySearchBox;
+
+//    public By cityOption = By.xpath("(//div[text()='Pune'])[1]");
+    @FindBy (xpath = "(//div[text()='Pune'])[1]")
+    private WebElement cityOption;
+
     public By packageName = By.xpath("//h3[@data-aid=\"popular-health-packages-card-title\"]");
-    public By scrollBtn = By.xpath("(//div[@class='slick-arrow-wrapper'])[2]");
+
+//    public By scrollBtn = By.xpath("(//div[@class='slick-arrow-wrapper'])[2]");
+    @FindBy(xpath = "(//div[@class='slick-arrow-wrapper'])[2]" )
+    private WebElement scrollBtn;
+
     public By packageAgeGroup  = By.xpath("//p[@class='c-package__age-text']");
     public By packagePrice     = By.xpath("//span[@class='c-package__price-current']");
-    //public By TopBookedTests =  By.xpath("//h2[contains(.,'Top booked')]/following::section[1]//button");
+    public By ageGroup = By.xpath("//p[text()='For Age:18-80yrs']");
+
+    @FindBy (xpath = "(//i[@class=\"icon-ic_next_cheveron u-center\"])[2]")
+    private WebElement arrowBtn;
+
     public By addToCart = By.xpath("//div[@class=\"o-f-color--plight\"]");
+
     public By testContainerLocator = By.xpath("//div[@class=\"u-pointer u-shadow--hover u-margin--less c-top-test-card\"]");
-    public By cartBtn = By.xpath("//div[@class=\"c-global-cart u-pointer\"]");
 
-    public By proceedCheckout = By.xpath("//div[contains(text(),'Proceed')]");
+//    public By cartBtn = By.xpath("//div[@class=\"c-global-cart u-pointer\"]");
+    @FindBy (xpath = "//div[@class=\"c-global-cart u-pointer\"]" )
+    private WebElement cartBtn;
+//    public By proceedCheckout = By.xpath("//div[contains(text(),'Proceed')]");
+    @FindBy (xpath = "//div[contains(text(),'Proceed')]" )
+    private WebElement proceedCheckout;
+
+
     //form xpaths
-    public By Name_Field = By.xpath("//input[@data-aid=\"patient-name\"]");
-    public By Phone_Number = By.xpath("//input[@type=\"tel\"]");
-    public By Dob_Day = By.xpath("//input[@type='text' and contains(@placeholder,'')]");
-    public  By Dob_Year_Dropdown = By.xpath("//div[contains(@class,'select')]//div[contains(text(),'Years') or contains(.,'Year')]");
-    public By Gender_Male = By.xpath("//label[contains(.,'Male')]");
-    public By Gender_Female = By.xpath("//label[contains(.,'Female')]");
-    public By Gender_Other = By.xpath("//label[contains(.,'Other')]");
-    public By Email = By.xpath("//input[@type=\"email\"]");
-    public By ContinueBtn = By.xpath("//button[contains(.,'Continue') or contains(.,'Proceed')]");
+//    public By Name_Field = By.xpath("//input[@data-aid=\"patient-name\"]");
+    @FindBy (xpath ="//input[@data-aid=\"patient-name\"]")
+    private WebElement nameField;
+
+//    public By Phone_Number = By.xpath("//input[@type=\"tel\"]");
+    @FindBy (xpath = "//input[@type=\"tel\"]" )
+    private WebElement phNumber;
+
+//    public By Email = By.xpath("//input[@type=\"email\"]");
+    @FindBy (xpath = "//input[@type=\"email\"]" )
+    private WebElement emailId;
+
+//    public By Gender_Male = By.xpath("//div[@data-aid='patient-gender-selected-MALE']");
+    @FindBy (xpath = "//div[@data-aid='patient-gender-selected-MALE']")
+    private WebElement genderMale;
+
+  //  public By Dob_Day = By.xpath("//input[@data-aid=\"patient-age\"]");
+    @FindBy (xpath = "//input[@data-aid=\"patient-age\"]")
+    private WebElement dobAge;
+
+//    public By Dob_Year_Dropdown = By.xpath("//div[contains(@class,'select')]//div[contains(text(),'Years') or contains(.,'Year')]");
+    @FindBy (xpath = "//select [@class='c-order-v2__age__select']")
+    private WebElement dobYearDropdown;
+
+  //  public By ContinueBtn = By.xpath("//input[@data-aid=\"order-continue-button\"]");
+    @FindBy (xpath ="//input[@data-aid=\"order-continue-button\"]")
+    private WebElement continueBtn;
+
+    //Error xpath
+    @FindBy (xpath = "//div[text()='Enter valid name']")
+    private WebElement errorName;
+
+    @FindBy (xpath = "//div[text()='Required']")
+    private WebElement errorDob;
+
+    @FindBy (xpath = "//div[text()='Invalid Phone Number']")
+    private WebElement errorPhnumber;
+
+    @FindBy (xpath = "(//div[text()='Required'])[2]")
+    private WebElement errorEmail;
+
+    //take screenshot
 
 
+
+//Methods
     public DiagnosticPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new CommonCode(driver, 20);
     }
 
     public void navigateToDiagnosticPage() {
-        WebElement diagnosticTestClick = driver.findElement(bookDiagnosticTab);
-        diagnosticTestClick.click();
+        bookDiagnosticTab.click();
     }
     public String GetPageTitle() {
         return driver.getTitle();
     }
-
-    //wait for the top cities to visible
     public void waitForTopCities() {
         wait.visible(topCities);
     }
@@ -77,11 +130,26 @@ public class DiagnosticPage {
         }
     }
 
+    public List<String> extractTopcityList() {
+        List<WebElement> list = driver.findElements(topCities);
+        List<String> rows = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            String name = list.get(i).getText().trim();
+            if (!name.isEmpty()) {
+                rows.add(name);
+            }
+        }
+        return rows;
+    }
 
+    public void saveCityListToExcelFromList()  {
+        List<String> rows = extractTopcityList();
+        ExcelUtils.writeList("Cities", "List of Top cities", rows);
+    }
 
     public void searchBox(String city) {
         Actions action = new Actions(driver);
-        WebElement search = wait.visible(citySearchBox);
+        WebElement search = wait.visible(By.xpath("//input[@placeholder=\"Search for city\"]"));
         search.clear();
         search.sendKeys(city);
         search.click();
@@ -93,25 +161,19 @@ public class DiagnosticPage {
     }
 
 
-//    public List<WebElement> getPackageNames() {
-//        return driver.findElements(packageName);
-//    }
-        public void clickScroll(){
+    public void clickScroll(){
+
         Actions action = new Actions(driver);
         }
-//    public void storePackageNames() {
-//        List <WebElement> packageNames = driver.findElements(packageName);
-//        for(WebElement names:packageNames){
-//            System.out.println(names.getText());
-//        }
-//    }
-public void printPackageDetails() {
+
+    public void printPackageDetails() {
     List<WebElement> names  = driver.findElements(packageName);
     List<WebElement> ages   = driver.findElements(packageAgeGroup);
     List<WebElement> prices = driver.findElements(packagePrice);
     System.out.println("======= POPULAR HEALTH PACKAGES =======");
 
     for (int i = 0; i < names.size(); i++) {
+
         String name  = names.get(i).getText().trim();
         if (name.isEmpty()) continue; // <<< prevents the blank lines
 
@@ -119,8 +181,11 @@ public void printPackageDetails() {
         String price = (i < prices.size()) ? prices.get(i).getText().trim() : "";
 
         System.out.println(name + " | " + (age.isEmpty() ? "N/A" : age) + " | " + (price.isEmpty() ? "N/A" : price));
+        arrowBtn.click();
     }
 }
+
+
 
     public BigDecimal addTopBookedTestsAndGetTotal() {
         // price inside a test card: //span[@class="u-font-bold o-font-size--18"]
@@ -129,7 +194,7 @@ public void printPackageDetails() {
         final int MAX_TO_ADD = 3; // adjust if needed
 
         // Wait until at least one container is present
-        wait.visible(testContainerLocator);
+        wait.visible(By.xpath("//div[@class=\"u-pointer u-shadow--hover u-margin--less c-top-test-card\"]"));
 
         List<WebElement> containers = driver.findElements(testContainerLocator);
         if (containers.isEmpty()) {
@@ -188,9 +253,9 @@ public void printPackageDetails() {
         return runningTotal;
     }
     public void proceedToCheckout() {
-        wait.scrollIntoView(driver.findElement(cartBtn));
+        wait.scrollIntoView(cartBtn);
         wait.clickable(cartBtn).click();
-        driver.findElement(proceedCheckout).click();
+        proceedCheckout.click();
     }
 
 
@@ -236,13 +301,40 @@ public void printPackageDetails() {
         );
     }
 
-
-
-
-
-
-
-
+    public void sendName(String name){
+        wait.visible(By.xpath("//input[@data-aid=\"patient-name\"]")).sendKeys(name);
+    }
+    public void phoneNumber(String num){
+        phNumber.sendKeys(num);
+    }
+    public void sendEmail (String email){
+        emailId.sendKeys(email);
+    }
+    public void genderOption(){
+        genderMale.click();
+    }
+    public void sendDobAge(String age){
+        dobAge.sendKeys(age);
+    }
+    public void selectYearDropDown(){
+        dobYearDropdown.click();
+    }
+    public void clickContinueBtn(){
+        continueBtn.click();
+        ss.takeScreenshot(driver,"DiagnosticPageForm");
+    }
+    public String sendErrorName(){
+        return errorName.getText();
+    }
+    public String sendErrorDob(){
+        return errorDob.getText();
+    }
+    public String sendErrorMobile(){
+        return errorPhnumber.getText();
+    }
+    public String sendErrorEmail(){
+        return errorEmail.getText();
+    }
 
 
 }
