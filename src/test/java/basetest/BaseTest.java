@@ -12,12 +12,16 @@ public class BaseTest {
 
     protected WebDriver driver;
 
+//    @BeforeClass
+//    public void setupExcelReport() {
+//        ExcelUtils.initReport("outputs", "Practo_");
+//    }
+
     @BeforeClass
     public void setupExcelReport() {
-        ExcelUtils.initReport("outputs", "Practo_");
+        String pageName = this.getClass().getSimpleName(); // test class -> page name
+        ExcelUtils.initReport("outputs", "Practo", pageName);
     }
-
-
     @BeforeMethod
     public void setUp() {
 

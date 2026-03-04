@@ -13,37 +13,47 @@ import java.util.*;
 
 public class ExcelUtils {
     private static String reportFilePath;
-    private static final DateTimeFormatter TS =
-            DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
-    public static void initReport(String outputDir, String filePrefix) {
-        try {
-            Files.createDirectories(Path.of(outputDir));
-            String fileName = filePrefix + "_" + LocalDateTime.now().format(TS) + ".xlsx";
-            reportFilePath = Path.of(outputDir, fileName).toString();
-            try (Workbook wb = new XSSFWorkbook();
-                 FileOutputStream fos = new FileOutputStream(reportFilePath)) {
-                wb.write(fos);
-            }
-            System.out.println("[Excel] Report initialized: " + reportFilePath);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to initialize Excel report", e);
-        }
+    private static String outputDir;
+    private static String filePrefix;
+    private static String filePageName;
+
+    public static void initReport(String outputDirectory, String prefix, String pageName) {
+        outputDir = outputDirectory;
+        filePrefix = prefix;
+        filePageName = sanitizeFileName(pageName);
+        reportFilePath = null;
+        System.out.println("[Excel] Report initialized (lazy mode) for page: " + filePageName);
     }
-    public static void setExistingReport(String existingFilePath) {
-        File f = new File(existingFilePath);
-        if (!f.exists() || !f.isFile()) {
-            throw new IllegalArgumentException("File does not exist: " + existingFilePath);
+    private static String sanitizeFileName(String name) {
+        if (name == null) return "";
+        return name.replaceAll("[\\\\/:*?\"<>|\\s]+", "_");
+    }
+    private static void ensureReportExists() {
+        if (reportFilePath == null) {
+            try {
+                Files.createDirectories(Path.of(outputDir));
+                String pagePart = (filePageName == null || filePageName.isEmpty()) ? "" : ("_" + filePageName);
+                String fileName = filePrefix + pagePart + "_"  + ".xlsx";
+                reportFilePath = Path.of(outputDir, fileName).toString();
+                try (Workbook wb = new XSSFWorkbook();
+                     FileOutputStream fos = new FileOutputStream(reportFilePath)) {
+                    wb.write(fos);
+                }
+                Log.info("[Excel] Report created on first write: " + reportFilePath);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to initialize Excel report", e);
+            }
         }
-        reportFilePath = f.getAbsolutePath();
-        System.out.println("[Excel] Using existing report: " + reportFilePath);
     }
     public static String getReportFilePath() {
         if (reportFilePath == null) {
             throw new IllegalStateException("Excel report not initialized. Call ExcelUtils.initReport() first.");
         }
+        ensureReportExists();
         return reportFilePath;
     }
     public static void writeKeyValueSheet(String sheetName, Map<String, String> keyValues) {
+        ensureReportExists();
         try (Workbook wb = loadWorkbook();
              FileOutputStream fos = new FileOutputStream(getReportFilePath())) {
             Sheet sheet = getOrCreateSheet(wb, sheetName);
@@ -64,6 +74,7 @@ public class ExcelUtils {
         }
     }
     public static void writeTable(String sheetName, List<String> headers, List<List<String>> rows) {
+        ensureReportExists();
         try (Workbook wb = loadWorkbook();
              FileOutputStream fos = new FileOutputStream(getReportFilePath())) {
             Sheet sheet = getOrCreateSheet(wb, sheetName);
@@ -86,6 +97,7 @@ public class ExcelUtils {
         }
     }
     public static void writeList(String sheetName, String columnHeader, List<String> values) {
+        ensureReportExists();
         try (Workbook wb = loadWorkbook();
             FileOutputStream fos = new FileOutputStream(getReportFilePath())) {
             Sheet sheet = getOrCreateSheet(wb, sheetName);
