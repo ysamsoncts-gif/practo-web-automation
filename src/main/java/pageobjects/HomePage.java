@@ -20,6 +20,9 @@ public class HomePage {
     @FindBy (xpath = "(//i[@class='practo_logo_new'])[3]" )
     private WebElement practoLogoLocator;
 
+    @FindBy (xpath = "//a[@class='card-link']")
+    private WebElement cardLinkLocator;
+
     @FindBy (xpath = "//input[@placeholder='Search doctors, clinics, hospitals, etc.']")
     private WebElement searchBarLocator;
 
