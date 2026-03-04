@@ -20,8 +20,8 @@ public class HomePage {
     @FindBy (xpath = "(//i[@class='practo_logo_new'])[3]" )
     private WebElement practoLogoLocator;
 
-    @FindBy (xpath = "//a[@class='card-link']")
-    private WebElement cardLinkLocator;
+    private By cardLinkLocator = By.xpath("//a[@class='card-link']");
+    private By tabLinkLocator = By.xpath("//div[@class='product-tab__title']");
 
     @FindBy (xpath = "//input[@placeholder='Search doctors, clinics, hospitals, etc.']")
     private WebElement searchBarLocator;
@@ -122,6 +122,16 @@ public class HomePage {
     public boolean isPageLogoDisplayed(){
         wait.visible(practoLogoLocator);
         return practoLogoLocator.isDisplayed();
+    }
+
+    public int numberOfCardLinkPresent(){
+        List <WebElement> cardLinks = driver.findElements(cardLinkLocator);
+        return cardLinks.size();
+    }
+
+    public int numberOfLinkTabPresent(){
+        List<WebElement> tabLinks = driver.findElements(tabLinkLocator);
+        return tabLinks.size();
     }
 
     public void selectSearchHospitalClinic(String hospital) {
