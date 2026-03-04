@@ -21,15 +21,12 @@ public class TC_14_DemoFormInvalidData extends BaseTest {
         CorporatePage cp = new CorporatePage(driver);
         cp.navigateToCorporateTab();
         cp.navigateToHealthWellnessPage();
-
         Log.info("Starting test case: DemoFormInvalidData");
-
         URL url = getClass().getClassLoader().getResource("testData/AllDetails.xlsx");
         if (url == null) {
             throw new IllegalStateException("Resource 'testData/AllDetails.xlsx' not found on classpath");
         }
-        Path excelPath = Paths.get(url.toURI());   // Properly decodes spaces and Windows drive
-
+        Path excelPath = Paths.get(url.toURI());
         Map<String, String> kv = ExcelUtils.readKeyValueSheet(excelPath.toString(), "DemoFormInvalidData", false);
         String name = kv.getOrDefault("Name", "").trim();
         String organizationName = kv.getOrDefault("OrganizationName","").trim();

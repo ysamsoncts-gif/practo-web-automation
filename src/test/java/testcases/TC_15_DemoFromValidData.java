@@ -26,8 +26,7 @@ public class TC_15_DemoFromValidData extends BaseTest {
         if (url == null) {
             throw new IllegalStateException("Resource 'testData/AllDetails.xlsx' not found on classpath");
         }
-        Path excelPath = Paths.get(url.toURI());   // Properly decodes spaces and Windows drive
-
+        Path excelPath = Paths.get(url.toURI());
         Map<String, String> kv = ExcelUtils.readKeyValueSheet(excelPath.toString(), "DemoFormValidData", false);
         String name = kv.getOrDefault("Name", "").trim();
         String organizationName = kv.getOrDefault("OrganizationName","").trim();

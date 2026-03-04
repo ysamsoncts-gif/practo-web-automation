@@ -21,5 +21,6 @@ src/test/resources/testData/*.xlsx
 logs/
 screenshots/
 reports/
+outputs/
 .DS_Store
 config.properties

@@ -12,12 +12,10 @@ public class TC_05_HomePageSignupFormValidation extends BaseTest {
     @Test
     public void verifySignupForm() throws InterruptedException {
         HomePage home = new HomePage(driver);
-
         home.navigateToLoginPage();
         Thread.sleep(2000);
         home.navigateToSignupPage();
         home.clickSendOtpButton();
-
         Log.info("Test case 05 started:");
         Log.info("validating signup form for home page");
         Log.info("Name field error message is displayed :"+home.validateNameErrorMessage());
