@@ -1,7 +1,6 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -9,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.ExcelUtils;
 import utilities.ScreenshotUtil;
-import utilities.WaitUtils;
+import utilities.CommonCode;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ import java.util.List;
 
 public class    DiagnosticPage {
     private WebDriver driver;
-    private final WaitUtils wait;
+    private final CommonCode wait;
     private final ScreenshotUtil ss;
 
 
@@ -109,7 +108,7 @@ public class    DiagnosticPage {
 //Methods
     public DiagnosticPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WaitUtils(driver, 20);
+        this.wait = new CommonCode(driver, 20);
         PageFactory.initElements(driver, this);
         this.ss = new ScreenshotUtil();
     }

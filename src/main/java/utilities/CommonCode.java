@@ -8,10 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class WaitUtils {
+public class CommonCode {
         private final WebDriver driver;
         private final WebDriverWait wait;
-        public WaitUtils(WebDriver driver, int seconds) {
+        public CommonCode(WebDriver driver, int seconds) {
             this.driver = driver;
             this.wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         }
