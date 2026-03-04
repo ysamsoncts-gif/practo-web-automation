@@ -71,7 +71,6 @@ public class MedicinePage {
         cc.scrollIntoView(skin);
         skin.click();
     }
-
     public void addToCart(){
         Set<String>windowId = driver.getWindowHandles();
         List<String> windowList = new ArrayList(windowId);
@@ -91,6 +90,5 @@ public class MedicinePage {
         viewCartBtn.click();
         currLocation.click();
         ss.takeScreenshot(driver,"MedicineCart");
-
     }
 }
