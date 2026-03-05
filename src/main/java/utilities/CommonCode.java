@@ -63,10 +63,10 @@ public class CommonCode {
     public boolean isElementDisplayed(WebElement ele){
             return ele.isDisplayed();
     };
-    public static void hover(WebDriver driver, WebElement element) {
+    public void hover(WebDriver driver, WebElement element) {
         new Actions(driver).moveToElement(element).perform();
     }
-    public static void hoverAndClick(WebDriver driver, WebElement hoverTarget) {
+    public void hoverAndClick(WebDriver driver, WebElement hoverTarget) {
         new Actions(driver)
                 .moveToElement(hoverTarget)
                 .click()
