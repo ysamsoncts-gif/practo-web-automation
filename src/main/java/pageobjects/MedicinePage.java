@@ -75,8 +75,8 @@ public class MedicinePage {
         Set<String>windowId = driver.getWindowHandles();
         List<String> windowList = new ArrayList(windowId);
         driver.switchTo().window(windowList.get(1));
-        new Actions(driver).moveToElement(skinCare).perform();
-        new Actions(driver).moveToElement(faceWash).click().perform();
+        cc.hover(driver,skinCare);
+        cc.hoverAndClick(driver,faceWash);
         addBtn.click();
         inputField.sendKeys("cartisafe");
         inputField.click();
