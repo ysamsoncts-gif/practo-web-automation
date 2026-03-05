@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pageobjects.DiagnosticPage;
 import utilities.Log;
 
-public class TC_11_DiagnosticPageFormValidation extends BaseTest {
+public class TC_10_DiagnosticPageFormValidation extends BaseTest {
     @Test
     public void formValidationNegativeCase(){
         DiagnosticPage  diagnostic = new DiagnosticPage(driver);

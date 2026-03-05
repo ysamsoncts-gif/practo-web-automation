@@ -14,9 +14,10 @@
             <class name="testcases.TC_06_FindDoctorsPagePhoneErrorMessageValidation"/>
             <class name="testcases.TC_07_DiagnosticPageTitleValidation"/>
             <class name="testcases.TC_08_DiagnosticPageTopCitiesValidation"/>
-<!--            <class name="testcases.TC_09_DiagnosticPageSearchboxValidation"/>-->
-            <class name="testcases.TC_10_DiagnosticPageAddToCart"/>
-            <class name="testcases.TC_11_DiagnosticPageFormValidation"/>
+            <class name="testcases.TC_09_DiagnosticPageAddToCart"/>
+            <class name="testcases.TC_10_DiagnosticPageFormValidation"/>
+            <class name="testcases.TC_11_VideoConsultPageFormValidationNegativeCase"/>
+            <class name="testcases.TC_12_VideoConsultPageFormValidationPositiveCase"/>
             <class name="testcases.TC_13_NavigateToWellnessPage"/>
             <class name="testcases.TC_14_DemoFormInvalidData"/>
             <class name="testcases.TC_15_DemoFromValidData"/>

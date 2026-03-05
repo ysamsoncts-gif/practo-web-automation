@@ -9,7 +9,7 @@ import utilities.Log;
 
 import java.math.BigDecimal;
 
-public class TC_10_DiagnosticPageAddToCart extends BaseTest {
+public class TC_09_DiagnosticPageAddToCart extends BaseTest {
     @Test
     public void verifyAddtoCart_FormValidation() throws InterruptedException {
         DiagnosticPage diagnostic = new DiagnosticPage(driver);
