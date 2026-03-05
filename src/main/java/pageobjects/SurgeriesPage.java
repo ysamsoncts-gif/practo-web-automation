@@ -18,35 +18,50 @@ public class SurgeriesPage {
 
     @FindBy(xpath = "//a[@title='surgery' and @event='Nav Drawer:Interacted:Surgery']")
     private WebElement desktopSurgeriesNavbarLink;
+
     @FindBy(xpath = "//div[@data-qa-id='city-selector-container']")
     private WebElement formCityDropdownArrow;
+
     @FindBy(xpath = "(//div[@data-qa-id='city-name']/h1)[4]")
     private WebElement formCityOptionRadiobutton;
+
     @FindBy(xpath = "//div[@data-qa-id='ailment-selector-container']")
     private WebElement formAilmentDropdownArrow;
+
     @FindBy(xpath = "(//h1[contains(text(),'ACL Repair')])[2]")
     private WebElement formAilmentOptionRadioButton;
+
     @FindBy(xpath = "//div[@data-qa-id='ailment-selector-container']/following::div[1]")
     private WebElement formAilmentBoxErrorMsg;
+
     @FindBy(xpath = "//input[@id='Name-Gen-Lead-Form']")
     private WebElement formNameInputBox;
+
     @FindBy(xpath = "//input[@id='Name-Gen-Lead-Form']/parent::div/following::div[1]")
     private WebElement formNameErrorMsg;
+
     @FindBy(xpath = "//input[@id='Phone-Gen-Lead-Form']")
     private WebElement formContactNumberInputBox;
+
     @FindBy(xpath = "//input[@id='Phone-Gen-Lead-Form']/parent::div/following::div[1]")
     private WebElement formContactNumberErrorMsg;
+
     @FindBy(css = "[data-qa-id='book-appointment-cta']")
     private WebElement formBookAppointmentButton;
+
     private final By otpIframe = By.xpath("//iframe");
     @FindBy(xpath = "//p[@id='otpSentMsg']")
     private WebElement formOtpSuccessMsg;
+
     @FindBy(xpath = "//h1[@data-qa-id='surgical-solution-sub-header']/../descendant::p")
     private List<WebElement> popularSurgeriesItems;
+
     @FindBy(xpath = "//div[@data-qa-id='our-department-wrapper']/descendant::h1")
     private List<WebElement> ourDepartmentItems;
+
     @FindBy(xpath = "(//h1)[1]")
     private WebElement pageHeaderText;
+
     @FindBy(xpath = "//img[@alt='PCS Logo']")
     private WebElement pageLogo;
 
