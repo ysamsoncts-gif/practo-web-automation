@@ -3,6 +3,7 @@ package utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -62,5 +63,14 @@ public class CommonCode {
     public boolean isElementDisplayed(WebElement ele){
             return ele.isDisplayed();
     };
+    public static void hover(WebDriver driver, WebElement element) {
+        new Actions(driver).moveToElement(element).perform();
+    }
+    public static void hoverAndClick(WebDriver driver, WebElement hoverTarget) {
+        new Actions(driver)
+                .moveToElement(hoverTarget)
+                .click()
+                .perform();
+    }
 
 }
