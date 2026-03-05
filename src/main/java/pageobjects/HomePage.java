@@ -21,6 +21,7 @@ public class HomePage {
     private WebElement practoLogoLocator;
 
     private By cardLinkLocator = By.xpath("//a[@class='card-link']");
+
     private By tabLinkLocator = By.xpath("//div[@class='product-tab__title']");
 
     @FindBy (xpath = "//input[@placeholder='Search doctors, clinics, hospitals, etc.']")
@@ -28,6 +29,7 @@ public class HomePage {
 
     @FindBy (xpath = "(//div[contains(text(),\"Hospital\")])[4]")
     private WebElement hospitalOptionLocator;
+
     @FindBy (xpath = "(//div[starts-with(text(),'Doctor')])[1]")
     private  WebElement doctorOptionLocator;
 
@@ -36,37 +38,48 @@ public class HomePage {
 
     @FindBy (xpath = "(//div[contains(text(),\"Bangalore\")])")
     private WebElement bangaloreOptionLocator;
+
     @FindBy (xpath = "(//div[@data-qa-id='omni-suggestion-main'])[1]")
     private  WebElement jpNagarOptionLocator;
 
     @FindBy (xpath ="//span[contains(text(),\"JP Nagar\" )]" )
     private WebElement resultHospitalLocationLocator;
+
     public By resultHospitalNameLocator = By.xpath("//h2[@class='line-1']");
+
     @FindBy (xpath ="(//h2[@class='line-1'])[10]" )
     private WebElement resultHospitalLastNameLocator;
 
     @FindBy (xpath = "//div[@data-qa-id='doctor_gender_section']")
     private WebElement genderTabLocator;
+
     @FindBy (xpath = "//span[text()='Male Doctor']")
     private WebElement maleDoctorTabLocator;
 
     @FindBy (xpath ="//div[@data-qa-id='doctor_review_count_section']")
     private WebElement doctorReviewTabLocator;
+
     @FindBy (xpath ="(//li[@role='option'])[4]")
     private WebElement patientFeedbackTabLocator;
+
     @FindBy (xpath = "//div[@data-qa-id='years_of_experience_section']")
     private WebElement experienceTabLocator;
+
     @FindBy (xpath = "//span[text()='10+ Years of experience']")
     private WebElement yearsOfExperienceLocator;
 
     @FindBy (xpath = "//span[@data-qa-id='all_filters']" )
     private WebElement allFiltersTabLocator;
+
     @FindBy (xpath = "//div[@data-qa-id='Apollo_Clinic_checkbox']")
     private  WebElement apolloCheckBoxLocator;
+
     @FindBy (xpath = "//span[@data-qa-id='Above ₹500_label']")
     private WebElement feesRadioLocator;
+
     @FindBy (xpath = "//span[@data-qa-id='Available Tomorrow_label']" )
     private WebElement availabilityCheckBoxLocator;
+
     @FindBy (xpath = "//div[@data-qa-id='sort_by_section']" )
     private WebElement sortByTabLocator;
 
@@ -76,6 +89,7 @@ public class HomePage {
     public By resultDoctorNameLocator = By.xpath("//h2[@data-qa-id='doctor_name']");
     @FindBy (xpath = "//span[@data-qa-id='practice_city']")
     private WebElement resultDoctorLocationLocator;
+
     @FindBy (xpath = "(//h2[@data-qa-id='doctor_name'])[10]")
     private WebElement resultDoctorLastNameLocator;
 
@@ -84,6 +98,7 @@ public class HomePage {
 
     @FindBy (xpath = "//input[@id='username']")
     private WebElement mobileNoEmailInputLocator;
+
     @FindBy (xpath = "//input[@id='password']")
     private WebElement passwordInputLocator;
 
@@ -101,8 +116,10 @@ public class HomePage {
 
     @FindBy (xpath = "//span[@id='nameErrorBlock']")
     private WebElement nameBlockErrorLocator;
+
     @FindBy (xpath = "//span[@id='mobileErrorBlock']")
     private WebElement mobileBlockErrorLocator;
+
     @FindBy (xpath = "//span[@id='passwordErrorBlock']")
     private WebElement passwordBlockErrorLocator;
 
@@ -164,14 +181,6 @@ public class HomePage {
     public boolean verifyHospitalName() {
         cc.present(By.xpath("//span[contains(text(),\"JP Nagar\" )]" ));
         return resultHospitalLocationLocator.getText().startsWith("JP Nagar");
-    }
-
-    public void storeHospitalName() {
-        List<WebElement> hospitalNames = driver.findElements(resultHospitalNameLocator);
-        cc.scrollIntoView(resultHospitalLastNameLocator);
-        for (WebElement names : hospitalNames) {
-            System.out.println(names.getText());
-        }
     }
 
     public List<String> extractHospitalList() {
@@ -239,14 +248,6 @@ public class HomePage {
 
     public void selectExperienceFilter(){
         cc.clickable(experienceFilterLocator).click();
-    }
-
-    public void storeDoctorName(){
-        List <WebElement> doctorNames = driver.findElements(resultDoctorNameLocator);
-        cc.scrollIntoView(resultDoctorLastNameLocator);
-        for(WebElement names:doctorNames){
-            System.out.println(names.getText());
-        }
     }
 
     public List<String> extractDoctorList() {
