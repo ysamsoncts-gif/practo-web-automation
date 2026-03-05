@@ -1,6 +1,5 @@
 package pageobjects;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -14,7 +13,7 @@ import java.util.Set;
 public class FindDoctorsPage {
 
     private final WebDriver driver;
-    private final CommonCode wait;
+    private final CommonCode cc;
     private final ScreenshotUtil ss;
 
     @FindBy (xpath = "(//div[@class='product-tab__title'])[1]")
@@ -76,52 +75,52 @@ public class FindDoctorsPage {
 
     public FindDoctorsPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new CommonCode(driver, 20);
+        this.cc = new CommonCode(driver, 20);
         this.ss = new ScreenshotUtil();
         PageFactory.initElements(driver, this);
     }
 
     public void navigateToFindDoctorsTab(){
-        wait.clickable(productTabLocator).click();
+        cc.clickable(productTabLocator).click();
     }
 
     public void findDoctorsTabSearchDoctors(){
-       wait.visible(findDoctorsSearchDoctorsTabLocator).sendKeys("Dentist");
-        wait.clickable(dentistOptionLocator).click();
+       cc.visible(findDoctorsSearchDoctorsTabLocator).sendKeys("Dentist");
+        cc.clickable(dentistOptionLocator).click();
     }
 
     public void findDoctorsTabSearchLocation(){
-       wait.visible(findDoctorsLocationSearchBarLocator);
+       cc.visible(findDoctorsLocationSearchBarLocator);
         findDoctorsLocationSearchBarLocator.clear();
         findDoctorsLocationSearchBarLocator.sendKeys("Pune");
         findDoctorsLocationSearchBarLocator.click();
-        wait.clickable(puneOptionLocator).click();
+        cc.clickable(puneOptionLocator).click();
     }
 
     public void selectGenderFilter(){
-       wait.clickable(genderBarLocator).click();
-       wait.clickable(femaleOptionLocator).click();
+       cc.clickable(genderBarLocator).click();
+       cc.clickable(femaleOptionLocator).click();
     }
 
     public void selectFeedbackFilter(){
-        wait.clickable(reviewBarLocator).click();
-        wait.clickable(reviewFirstOptionLocator).click();
+        cc.clickable(reviewBarLocator).click();
+        cc.clickable(reviewFirstOptionLocator).click();
     }
 
     public void selectExperienceFilter(){
-        wait.clickable(experienceBarLocator).click();
-        wait.clickable(experienceFirstOptionLocator).click();
+        cc.clickable(experienceBarLocator).click();
+        cc.clickable(experienceFirstOptionLocator).click();
     }
 
     public void selectALlFilters(){
-        wait.clickable(allFilterBarLocator).click();
-        wait.clickable(tomorrowRadioLocator).click();
+        cc.clickable(allFilterBarLocator).click();
+        cc.clickable(tomorrowRadioLocator).click();
     }
 
     public void navigateToDoctorBookingTab(){
         String originalWindow = driver.getWindowHandle();
 
-        wait.visible(doctorNameLocator).click();
+        cc.visible(doctorNameLocator).click();
 
         Set<String> windowHandles = driver.getWindowHandles();
 
@@ -137,19 +136,20 @@ public class FindDoctorsPage {
     }
 
     public void selectBookingTime(){
-        wait.visible(tomorrowTabLocator).click();
+        cc.visible(tomorrowTabLocator).click();
         timeLocator.click();
     }
 
     public void sendPhoneNumber(){
         Actions action = new Actions(driver);
-        wait.visible(mobileNumberBarLocator).click();
+        cc.visible(mobileNumberBarLocator).click();
         mobileNumberBarLocator.sendKeys("797776");
         action.click(continueButtonLocator).build().perform();
+        CommonCode.hoverAndClick(driver,continueButtonLocator);
         ss.takeScreenshot(driver,"Doctor_Booking_Form_Validation");
     }
 
     public String validateErrorMessage(){
-       return wait.visible(errorTextLocator).getText();
+       return cc.visible(errorTextLocator).getText();
     }
 }

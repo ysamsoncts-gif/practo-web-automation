@@ -13,6 +13,7 @@ public class TC_05_HomePageSignupFormValidation extends BaseTest {
     public void verifySignupForm() throws InterruptedException {
         HomePage home = new HomePage(driver);
         home.navigateToLoginPage();
+        Thread.sleep(2000);
         home.navigateToSignupPage();
         home.clickSendOtpButton();
         Log.info("Test case 05 started:");
