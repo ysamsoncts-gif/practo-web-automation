@@ -14,7 +14,7 @@ import java.util.List;
 public class HomePage {
 
     private final WebDriver driver;
-    private final CommonCode wait;
+    private final CommonCode cc;
     private final ScreenshotUtil ss;
 
     @FindBy (xpath = "(//i[@class='practo_logo_new'])[3]" )
@@ -110,7 +110,7 @@ public class HomePage {
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new CommonCode(driver, 20);
+        this.cc = new CommonCode(driver, 20);
         this.ss = new ScreenshotUtil();
         PageFactory.initElements(driver, this);
     }
@@ -120,7 +120,7 @@ public class HomePage {
     }
 
     public boolean isPageLogoDisplayed(){
-        wait.visible(practoLogoLocator);
+        cc.visible(practoLogoLocator);
         return practoLogoLocator.isDisplayed();
     }
 
@@ -137,38 +137,38 @@ public class HomePage {
     public void selectSearchHospitalClinic(String hospital) {
         searchBarLocator.click();
         searchBarLocator.sendKeys(hospital);
-        wait.clickable(hospitalOptionLocator).click();
+        cc.clickable(hospitalOptionLocator).click();
     }
 
     public void selectSearchDoctor(String doctor) {
         searchBarLocator.click();
         searchBarLocator.sendKeys(doctor);
-        wait.clickable(doctorOptionLocator).click();
+        cc.clickable(doctorOptionLocator).click();
     }
 
     public void selectSearchLocation(String location)  {
         locationSearchBarLocator.clear();
         locationSearchBarLocator.click();
         locationSearchBarLocator.sendKeys(location);
-        wait.clickable(bangaloreOptionLocator).click();
+        cc.clickable(bangaloreOptionLocator).click();
     }
 
     public void selectSubSearchLocation(String location)  {
         locationSearchBarLocator.clear();
         locationSearchBarLocator.click();
         locationSearchBarLocator.sendKeys(location);
-        wait.clickable(jpNagarOptionLocator).click();
-        wait.present(By.xpath("//span[contains(text(),\"JP Nagar\" )]" ));
+        cc.clickable(jpNagarOptionLocator).click();
+        cc.present(By.xpath("//span[contains(text(),\"JP Nagar\" )]" ));
     }
 
     public boolean verifyHospitalName() {
-        wait.present(By.xpath("//span[contains(text(),\"JP Nagar\" )]" ));
+        cc.present(By.xpath("//span[contains(text(),\"JP Nagar\" )]" ));
         return resultHospitalLocationLocator.getText().startsWith("JP Nagar");
     }
 
     public void storeHospitalName() {
         List<WebElement> hospitalNames = driver.findElements(resultHospitalNameLocator);
-        wait.scrollIntoView(resultHospitalLastNameLocator);
+        cc.scrollIntoView(resultHospitalLastNameLocator);
         for (WebElement names : hospitalNames) {
             System.out.println(names.getText());
         }
@@ -192,7 +192,7 @@ public class HomePage {
     }
 
     public void selectGender(){
-        WebElement clickGender = wait.clickable(genderTabLocator);
+        WebElement clickGender = cc.clickable(genderTabLocator);
         clickGender.click();
     }
 
@@ -201,49 +201,49 @@ public class HomePage {
     }
 
     public void selectDoctorReview(){
-         wait.clickable(doctorReviewTabLocator);
+         cc.clickable(doctorReviewTabLocator);
          doctorReviewTabLocator.click();
     }
 
     public void selectFilterPatientFeedback(){
-        wait.clickable(patientFeedbackTabLocator).click();
+        cc.clickable(patientFeedbackTabLocator).click();
     }
 
     public void selectExperience(){
-         wait.clickable(experienceTabLocator).click();
+         cc.clickable(experienceTabLocator).click();
     }
 
     public void selectFilter10Years(){
-        wait.clickable(yearsOfExperienceLocator).click();
+        cc.clickable(yearsOfExperienceLocator).click();
     }
 
     public void selectALlFilters(){
-         wait.clickable(allFiltersTabLocator).click();
+         cc.clickable(allFiltersTabLocator).click();
     }
 
     public void selectApolloCheckBox() {
-        wait.clickable(apolloCheckBoxLocator).click();
+        cc.clickable(apolloCheckBoxLocator).click();
     }
 
     public void selectFeesRadio() {
-       wait.clickable(feesRadioLocator).click();
+       cc.clickable(feesRadioLocator).click();
     }
 
     public void selectAvailabilityCheckBox() {
-         wait.clickable(availabilityCheckBoxLocator).click();
+         cc.clickable(availabilityCheckBoxLocator).click();
     }
 
     public void selectSortByFilter(){
-        wait.clickable(sortByTabLocator).click();
+        cc.clickable(sortByTabLocator).click();
     }
 
     public void selectExperienceFilter(){
-        wait.clickable(experienceFilterLocator).click();
+        cc.clickable(experienceFilterLocator).click();
     }
 
     public void storeDoctorName(){
         List <WebElement> doctorNames = driver.findElements(resultDoctorNameLocator);
-        wait.scrollIntoView(resultDoctorLastNameLocator);
+        cc.scrollIntoView(resultDoctorLastNameLocator);
         for(WebElement names:doctorNames){
             System.out.println(names.getText());
         }
@@ -267,17 +267,17 @@ public class HomePage {
     }
 
     public boolean verifyDoctorLocation(){
-            wait.present(By.xpath("//span[@data-qa-id='practice_city']"));
+            cc.present(By.xpath("//span[@data-qa-id='practice_city']"));
             return resultDoctorLocationLocator.getText().startsWith("Bangalore");
         }
 
     public void navigateToLoginPage(){
-        wait.clickable(loginSignupButtonLocator).click();
+        cc.clickable(loginSignupButtonLocator).click();
     }
 
     public void sendDataToInputBox(String phNumber , String password){
-        wait.visible(mobileNoEmailInputLocator).sendKeys(phNumber);
-        wait.visible(passwordInputLocator).sendKeys(password);
+        cc.visible(mobileNoEmailInputLocator).sendKeys(phNumber);
+        cc.visible(passwordInputLocator).sendKeys(password);
     }
 
     public void clickLoginButton(){
@@ -286,33 +286,33 @@ public class HomePage {
     }
 
     public String validatePhoneEmailErrorMessage(){
-        return wait.visible(userNameErrorLocator).getText();
+        return cc.visible(userNameErrorLocator).getText();
     }
 
     public void sendDataToInputBoxB(String phNumber , String password){
-        WebElement sendMobileNumber = wait.visible(mobileNoEmailInputLocator);
+        WebElement sendMobileNumber = cc.visible(mobileNoEmailInputLocator);
         sendMobileNumber.clear();
         sendMobileNumber.sendKeys(phNumber);
-        WebElement sendPassword = wait.visible(passwordInputLocator);
+        WebElement sendPassword = cc.visible(passwordInputLocator);
         sendPassword.sendKeys(password);
     }
 
     public String validatePasswordErrorMessage(){
-       return wait.visible(passwordErrorLocator).getText();
+       return cc.visible(passwordErrorLocator).getText();
     }
 
     public void navigateToSignupPage(){
-        wait.clickable(signupButtonLocator).click();
+        cc.clickable(signupButtonLocator).click();
     }
 
     public void clickSendOtpButton(){
-        WebElement clickSendOtpBtn = wait.clickable(sendOtpButtonLocator);
+        WebElement clickSendOtpBtn = cc.clickable(sendOtpButtonLocator);
         clickSendOtpBtn.click();
         ss.takeScreenshot(driver,"Signup_Form_Validation");
     }
 
     public String validateNameErrorMessage(){
-        return wait.visible(nameBlockErrorLocator).getText();
+        return cc.visible(nameBlockErrorLocator).getText();
     }
 
     public String validatePhoneErrorMessage() {
