@@ -3,7 +3,6 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.ExcelUtils;
@@ -138,13 +137,10 @@ public class    DiagnosticPage {
     }
 
     public BigDecimal addTopBookedTestsAndGetTotal() {
-        // price inside a test card: //span[@class="u-font-bold o-font-size--18"]
         BigDecimal runningTotal = BigDecimal.ZERO;
         int added = 0;
-        final int MAX_TO_ADD = 3; // adjust if needed
-
+        final int MAX_TO_ADD = 3;
         wait.visible(By.xpath("//div[@class=\"u-pointer u-shadow--hover u-margin--less c-top-test-card\"]"));
-
         List<WebElement> containers = driver.findElements(testContainerLocator);
         if (containers.isEmpty()) {
             System.out.println("[addTopBookedTestsAndGetTotal] No test containers found.");
