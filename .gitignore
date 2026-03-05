@@ -13,7 +13,6 @@ target/
 *.iml
 *.ipr
 
-
 target/
 src/test/resources/testData/*.xlsx
 .idea/

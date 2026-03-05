@@ -23,12 +23,9 @@ public class ScreenshotUtil {
             String fileName = safeBase + ".png";
             File folder = new File((folderPath == null || folderPath.isBlank()) ? "screenshots" : folderPath.trim());
             if (!folder.exists()) folder.mkdirs();
-
             File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             File dest = new File(folder, fileName);
-
             Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
             return dest.getAbsolutePath();
         } catch (IOException e) {
             System.out.println("Failed to save screenshot: " + e.getMessage());
