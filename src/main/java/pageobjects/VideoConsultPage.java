@@ -12,7 +12,6 @@ import utilities.ScreenshotUtil;
 public class VideoConsultPage {
     private WebDriver driver;
     private final CommonCode wait;
-    private final ScreenshotUtil ss;
 
     @FindBy (xpath ="//button[@class=\"btn btn-primary btn_small pos-abs\"]" )
     private WebElement bookVideoConsult;
@@ -32,7 +31,6 @@ public class VideoConsultPage {
     @FindBy (xpath = "//button[@class=\"btn-blue continue-btn\"]")
     private WebElement continueBtn;
 
-//    @FindBy (xpath = "(//*[contains(normalize-space(.), 'We have sent you an OTP on')])[13]")
     @FindBy(xpath = "//p[@id=\"otpSentMsg\"]")
     private WebElement otpMsg;
 
@@ -43,7 +41,6 @@ public class VideoConsultPage {
         this.driver = driver;
         this.wait = new CommonCode(driver, 20);
         PageFactory.initElements(driver, this);
-        this.ss = new ScreenshotUtil();
     }
     public void navigateToVideoConsultPage() {
         bookVideoConsult.click();
