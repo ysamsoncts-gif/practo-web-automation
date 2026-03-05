@@ -6,30 +6,21 @@ import utilities.ConfigReader;
 import utilities.DriverFactory;
 import utilities.ExcelUtils;
 
-import java.time.Duration;
-
 public class BaseTest {
 
     protected WebDriver driver;
 
-//    @BeforeClass
-//    public void setupExcelReport() {
-//        ExcelUtils.initReport("outputs", "Practo_");
-//    }
-
     @BeforeClass
     public void setupExcelReport() {
-        String pageName = this.getClass().getSimpleName(); // test class -> page name
+        String pageName = this.getClass().getSimpleName();
         ExcelUtils.initReport("outputs", "Practo", pageName);
     }
+
     @BeforeMethod
     public void setUp() {
-
         String browserFromConfig = ConfigReader.get("browser", "chrome");
-
         boolean headless = ConfigReader.getBoolean("headless", false);
         String baseUrl = ConfigReader.get("baseUrl");
-
         driver = DriverFactory.getDriver(browserFromConfig, headless);
         driver.manage().window().maximize();
         driver.get(baseUrl);

@@ -39,14 +39,19 @@ public class FindDoctorsPage {
 
     @FindBy (xpath = "//div[@data-qa-id='doctor_review_count_section']")
     private WebElement reviewBarLocator;
+
     @FindBy (xpath = "(//li[@role='option'])[3]")
     private WebElement reviewFirstOptionLocator;
+
     @FindBy (xpath = "//div[@data-qa-id='years_of_experience_section']")
     private WebElement experienceBarLocator;
+
     @FindBy (xpath = "(//li[@role='option'])[6]")
     private WebElement experienceFirstOptionLocator;
+
     @FindBy (xpath = "//span[@data-qa-id='all_filters']")
     private WebElement allFilterBarLocator;
+
     @FindBy (xpath = "(//div[@data-qa-id='Availability_radio'])[3]")
     private WebElement tomorrowRadioLocator;
 

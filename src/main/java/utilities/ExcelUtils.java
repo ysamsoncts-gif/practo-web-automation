@@ -2,13 +2,11 @@ package utilities;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.checkerframework.checker.units.qual.K;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.*;
 
 public class ExcelUtils {
@@ -52,27 +50,7 @@ public class ExcelUtils {
         ensureReportExists();
         return reportFilePath;
     }
-    public static void writeKeyValueSheet(String sheetName, Map<String, String> keyValues) {
-        ensureReportExists();
-        try (Workbook wb = loadWorkbook();
-             FileOutputStream fos = new FileOutputStream(getReportFilePath())) {
-            Sheet sheet = getOrCreateSheet(wb, sheetName);
-            int rowIdx = nextRowIndex(sheet);
-            Row header = sheet.createRow(rowIdx++);
-            header.createCell(0).setCellValue("Field");
-            header.createCell(1).setCellValue("Value");
-            applyHeaderStyle(wb, header);
-            for (Map.Entry<String, String> e : keyValues.entrySet()) {
-                Row r = sheet.createRow(rowIdx++);
-                r.createCell(0).setCellValue(e.getKey());
-                r.createCell(1).setCellValue(e.getValue() == null ? "" : e.getValue());
-            }
-            autosize(sheet, 2);
-            wb.write(fos);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to write key-value sheet: " + sheetName, e);
-        }
-    }
+
     public static void writeTable(String sheetName, List<String> headers, List<List<String>> rows) {
         ensureReportExists();
         try (Workbook wb = loadWorkbook();
@@ -155,62 +133,7 @@ public class ExcelUtils {
             return WorkbookFactory.create(fis);
         }
     }
-    public static List<String> getSheetNames(String filePath) {
-        try (Workbook wb = openWorkbook(filePath)) {
-            List<String> names = new ArrayList<>();
-            for (int i = 0; i < wb.getNumberOfSheets(); i++) {
-                names.add(wb.getSheetName(i));
-            }
-            return names;
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to read sheet names from: " + filePath, e);
-        }
-    }
-    public static List<List<String>> readTable(String filePath, String sheetName) {
-        try (Workbook wb = openWorkbook(filePath)) {
-            Sheet sheet = wb.getSheet(sheetName);
-            if (sheet == null) {
-                throw new IllegalArgumentException("Sheet not found: " + sheetName);
-            }
-            int maxCols = findMaxColumns(sheet);
-            List<List<String>> table = new ArrayList<>();
-            for (Row row : sheet) {
-                if (row == null) continue;
-                if (isRowCompletelyBlank(row, maxCols)) continue;
-                List<String> line = new ArrayList<>(maxCols);
-                for (int c = 0; c < maxCols; c++) {
-                    Cell cell = row.getCell(c, Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
-                    line.add(cellToString(cell).trim());
-                }
-                table.add(line);
-            }
-            return table;
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to read table from: " + filePath + " / " + sheetName, e);
-        }
-    }
-    public static List<String> readList(String filePath, String sheetName, int columnIndex, boolean skipHeader) {
-        try (Workbook wb = openWorkbook(filePath)) {
-            Sheet sheet = wb.getSheet(sheetName);
-            if (sheet == null) {
-                throw new IllegalArgumentException("Sheet not found: " + sheetName);
-            }
-            List<String> values = new ArrayList<>();
-            int startRow = skipHeader ? 1 : 0;
-            int lastRow = sheet.getLastRowNum();
-            for (int r = startRow; r <= lastRow; r++) {
-                Row row = sheet.getRow(r);
-                if (row == null) continue;
-                Cell cell = row.getCell(columnIndex, Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
-                String v = cellToString(cell).trim();
-                if (v.isEmpty()) continue; // ignore blanks (optional; remove if you want blanks)
-                values.add(v);
-            }
-            return values;
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to read list from: " + filePath + " / " + sheetName, e);
-        }
-    }
+
     public static Map<String, String> readKeyValueSheet(String filePath, String sheetName, boolean skipHeader) {
         try (Workbook wb = openWorkbook(filePath)) {
             Sheet sheet = wb.getSheet(sheetName);
@@ -233,25 +156,8 @@ public class ExcelUtils {
             throw new RuntimeException("Failed to read key-value sheet from: " + filePath + " / " + sheetName, e);
         }
     }
-    private static boolean isRowCompletelyBlank(Row row, int maxCols) {
-        if (row == null) return true;
-        for (int i = 0; i < maxCols; i++) {
-            Cell cell = row.getCell(i, Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            if (cell != null && !cellToString(cell).trim().isEmpty()) {
-                return false;
-            }
-        }
-        return true;
-    }
-    private static int findMaxColumns(Sheet sheet) {
-        int max = 0;
-        for (Row row : sheet) {
-            if (row != null && row.getLastCellNum() > max) {
-                max = row.getLastCellNum();
-            }
-        }
-        return Math.max(max, 1);
-    }
+
+
     private static String cellToString(Cell cell) {
         if (cell == null) return "";
         switch (cell.getCellType()) {
