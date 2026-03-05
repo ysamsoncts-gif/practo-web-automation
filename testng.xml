@@ -12,7 +12,7 @@
 <!--            <class name="testcases.TC_04_HomePageLoginFormValidation"/>-->
 <!--            <class name="testcases.TC_05_HomePageSignupFormValidation"/>-->
 <!--            <class name="testcases.TC_06_FindDoctorsPagePhoneErrorMessageValidation"/>-->
-<!--            <class name="testcases.TC_07_DiagnosticPageTitleValidation"/>-->
+            <class name="testcases.TC_07_DiagnosticPageTitleValidation"/>
             <class name="testcases.TC_08_DiagnosticPageTopCitiesValidation"/>
             <class name="testcases.TC_09_DiagnosticPageAddToCart"/>
             <class name="testcases.TC_10_DiagnosticPageFormValidation"/>

@@ -43,9 +43,11 @@ public class VideoConsultPage {
         PageFactory.initElements(driver, this);
     }
     public void navigateToVideoConsultPage() {
+
         bookVideoConsult.click();
     }
     public void consultNowBtnClick(){
+
         consultBtn.click();
     }
     public void sendDetailsToForm(String speciality, String number){
