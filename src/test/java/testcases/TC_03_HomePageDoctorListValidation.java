@@ -22,10 +22,10 @@ public class TC_03_HomePageDoctorListValidation extends BaseTest {
         home.selectFilter10Years();
         home.selectALlFilters();
         home.selectApolloCheckBox();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         home.selectALlFilters();
         home.selectFeesRadio();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         home.selectALlFilters();
         home.selectAvailabilityCheckBox();
         home.selectSortByFilter();
