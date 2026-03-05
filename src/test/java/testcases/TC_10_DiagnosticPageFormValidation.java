@@ -33,9 +33,5 @@ public class TC_10_DiagnosticPageFormValidation extends BaseTest {
         Log.info("Email error is displayed :"+diagnostic.sendErrorEmail());
         Assert.assertEquals(diagnostic.sendErrorEmail(),"Required","Email error not displayed");
         Log.info("Test case 11 passed.");
-
-
-
-
     }
 }

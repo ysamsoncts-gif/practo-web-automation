@@ -30,14 +30,8 @@ public class    DiagnosticPage {
     @FindBy (xpath = "(//div[text()='Pune'])[1]")
     private WebElement cityOption;
 
-    public By packageName = By.xpath("//h3[@data-aid=\"popular-health-packages-card-title\"]");
-
     @FindBy(xpath = "(//div[@class='slick-arrow-wrapper'])[2]" )
     private WebElement scrollBtn;
-
-    public By packageAgeGroup  = By.xpath("//p[@class='c-package__age-text']");
-    public By packagePrice     = By.xpath("//span[@class='c-package__price-current']");
-    public By ageGroup = By.xpath("//p[text()='For Age:18-80yrs']");
 
     @FindBy (xpath = "(//i[@class=\"icon-ic_next_cheveron u-center\"])[2]")
     private WebElement arrowBtn;
@@ -97,10 +91,12 @@ public class    DiagnosticPage {
     }
 
     public String GetPageTitle() {
+
         return driver.getTitle();
     }
 
     public void waitForTopCities() {
+
         wait.visible(topCities);
     }
 
@@ -111,13 +107,6 @@ public class    DiagnosticPage {
             cities.add(city.getText());
         }
         return cities;
-    }
-
-    public void printTopCities(List<String> cities) {
-        System.out.println("=====TOP CITIES=====");
-        for (String city : cities) {
-            System.out.println(city);
-        }
     }
 
     public List<String> extractTopcityList() {
@@ -138,7 +127,6 @@ public class    DiagnosticPage {
     }
 
     public void searchBox(String city) {
-        Actions action = new Actions(driver);
         WebElement search = wait.visible(By.xpath("//input[@placeholder=\"Search for city\"]"));
         search.clear();
         search.sendKeys(city);
@@ -147,27 +135,6 @@ public class    DiagnosticPage {
 
     public void chooseCity(String city) {
         wait.clickable(cityOption).click();
-    }
-
-    public void clickScroll(){
-        Actions action = new Actions(driver);
-    }
-
-    public void printPackageDetails() {
-        List<WebElement> names  = driver.findElements(packageName);
-        List<WebElement> ages   = driver.findElements(packageAgeGroup);
-        List<WebElement> prices = driver.findElements(packagePrice);
-        System.out.println("======= POPULAR HEALTH PACKAGES =======");
-
-        for (int i = 0; i < names.size(); i++) {
-            String name  = names.get(i).getText().trim();
-            if (name.isEmpty()) continue; // <<< prevents the blank lines
-            String age   = (i < ages.size())   ? ages.get(i).getText().trim()   : "";
-            String price = (i < prices.size()) ? prices.get(i).getText().trim() : "";
-
-            System.out.println(name + " | " + (age.isEmpty() ? "N/A" : age) + " | " + (price.isEmpty() ? "N/A" : price));
-            arrowBtn.click();
-        }
     }
 
     public BigDecimal addTopBookedTestsAndGetTotal() {
@@ -266,23 +233,28 @@ public class    DiagnosticPage {
                         .trim()
         );
     }
-
     public void sendName(String name){
+
         wait.visible(By.xpath("//input[@data-aid=\"patient-name\"]")).sendKeys(name);
     }
     public void phoneNumber(String num){
+
         phNumber.sendKeys(num);
     }
     public void sendEmail (String email){
+
         emailId.sendKeys(email);
     }
     public void genderOption(){
+
         genderMale.click();
     }
     public void sendDobAge(String age){
+
         dobAge.sendKeys(age);
     }
     public void selectYearDropDown(){
+
         dobYearDropdown.click();
     }
     public void clickContinueBtn(){
@@ -290,15 +262,19 @@ public class    DiagnosticPage {
         ss.takeScreenshot(driver,"DiagnosticPageForm");
     }
     public String sendErrorName(){
+
         return errorName.getText();
     }
     public String sendErrorDob(){
+
         return errorDob.getText();
     }
     public String sendErrorMobile(){
+
         return errorPhnumber.getText();
     }
     public String sendErrorEmail(){
+
         return errorEmail.getText();
     }
 }
