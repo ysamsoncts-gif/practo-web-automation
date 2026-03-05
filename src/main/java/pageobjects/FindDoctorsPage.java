@@ -145,7 +145,7 @@ public class FindDoctorsPage {
         cc.visible(mobileNumberBarLocator).click();
         mobileNumberBarLocator.sendKeys("797776");
         action.click(continueButtonLocator).build().perform();
-        CommonCode.hoverAndClick(driver,continueButtonLocator);
+        cc.hoverAndClick(driver,continueButtonLocator);
         ss.takeScreenshot(driver,"Doctor_Booking_Form_Validation");
     }
 
