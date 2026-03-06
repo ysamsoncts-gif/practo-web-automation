@@ -1,0 +1,3 @@
+browser=chrome
+baseUrl= paste base your url
+headless= false
